@@ -28,7 +28,7 @@ public class ArticleController {
         crawlService.updateViewCount(id);
 
         return "crawlArticle";
-    } // 이런 식으로 추가해주기
+    }
 
     @GetMapping("/user/read/{id}")
     public String readUser(@PathVariable("id") Long id, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
@@ -37,18 +37,5 @@ public class ArticleController {
 
         return "userArticle";
     }
-
-
-//    @GetMapping("/read")
-//    public String read(@PathVariable("{articleid}") Long articleId, Model model) {
-//        Item one = ItemService.findOne(articleid);
-
-        // dto 또는 form 채우기
-        // one.set... 이걸 활용함. 소스코드 참고하기
-
-        // 이후 model.addAttribute로 dto또는 form 담아주기
-
-//        return "view-article";
-//    }
 
 }

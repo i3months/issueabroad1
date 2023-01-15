@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Crawl extends Article{
+public class Crawl extends PrevArticle {
     @Column(columnDefinition = "TEXT")
     private String originContent;
     @Column(columnDefinition = "TEXT")

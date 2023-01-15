@@ -1,6 +1,7 @@
 package issueabroad.first.entity.member;
 
 import lombok.*;
+import org.springframework.data.domain.Persistable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,4 +18,5 @@ public class Member {
     private String email;
     private String password;
     private String name;
+
 }

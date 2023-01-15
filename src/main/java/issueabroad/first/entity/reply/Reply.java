@@ -1,6 +1,6 @@
 package issueabroad.first.entity.reply;
 
-import issueabroad.first.entity.article.Article2;
+import issueabroad.first.entity.article.Article;
 import issueabroad.first.entity.article.BaseTimeEntity;
 import lombok.*;
 
@@ -11,18 +11,18 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
+@ToString(exclude = "article")
 public class Reply extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long rno;
     private String text;
-    private String writer;
+    private String replyer;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne
-    private Article2 article;
+    private Article article;
 
 
 }

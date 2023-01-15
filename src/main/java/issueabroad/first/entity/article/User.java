@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @DiscriminatorValue("사용자")
-public class User extends Article{
+public class User extends PrevArticle {
 
     private Long id;
     private String title;

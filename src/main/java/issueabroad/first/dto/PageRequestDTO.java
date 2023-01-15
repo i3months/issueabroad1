@@ -22,13 +22,12 @@ public class PageRequestDTO {
         this.size = 10;
     }
 
+    // 페이지 번호가 0부터 시작하니 -1 해주기
+    // pagable 타입을 생성하는 역할...
     public Pageable getPageableMain(Sort sort) {
         return PageRequest.of(0, 7, sort);
     }
     public Pageable getPageable(Sort sort) {
         return PageRequest.of(page-1, size, sort);
     }
-    // 페이지 번호가 0부터 시작하니 -1 해주기
-
-    // pagable 타입을 생성하는 역할.
 }

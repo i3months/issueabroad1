@@ -21,7 +21,8 @@ class MemberRepositoryTest {
             Member member = Member.builder()
                     .email("asdf" + i + "@naver.com")
                     .password("asdfzcv")
-                    .name("asdf" + i).build();
+                    .name("asdf" + i)
+                    .build();
 
             memberRepository.save(member);
         });

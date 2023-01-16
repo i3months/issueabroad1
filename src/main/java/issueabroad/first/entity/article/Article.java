@@ -19,7 +19,6 @@ public class Article extends BaseTimeEntity{
     private String title;
     private String content;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ManyToOne(fetch = FetchType.LAZY)
     private Member writer;
 

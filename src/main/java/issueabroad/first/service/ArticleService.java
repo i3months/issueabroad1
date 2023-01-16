@@ -13,6 +13,8 @@ public interface ArticleService {
     Long register(ArticleDTO dto);
 
     PageResultDTO<ArticleDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ArticleDTO, Object[]> getListMain(PageRequestDTO pageRequestDTO);
+
 
     ArticleDTO get(Long ano);
 

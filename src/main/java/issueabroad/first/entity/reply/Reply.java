@@ -20,7 +20,6 @@ public class Reply extends BaseTimeEntity {
     private String text;
     private String replyer;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne
     private Article article;
 

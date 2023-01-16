@@ -1,6 +1,7 @@
 package issueabroad.first.controller;
 
 import issueabroad.first.dto.PageRequestDTO;
+import issueabroad.first.service.ArticleService;
 import issueabroad.first.service.CrawlService;
 import issueabroad.first.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,14 @@ public class HomeController {
 
     private final UserService userService;
     private final CrawlService crawlService;
+    private final ArticleService articleService;
+
+    @GetMapping("/")
+    public String home2(PageRequestDTO pageRequestDTO, Model model) {
+        log.info("Home Controller called");
+
+        model.addAttribute("all", articleService.)
+    }
 
     @GetMapping("/")
     public String home(PageRequestDTO pageRequestDTO, Model model) {

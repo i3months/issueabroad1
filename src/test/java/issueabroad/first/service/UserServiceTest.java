@@ -8,18 +8,19 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class UserServiceImplTest {
+class UserServiceTest {
 
     @Autowired
-    private UserService service;
+    private UserService userService;
 
     @Test
-    public void test1() {
-        UserDTO userDTO = UserDTO.builder()
-                .title("adsf")
-                .content("zzzz")
+    public void testRegister() {
+        UserDTO dto = UserDTO.builder()
+                .title("TestTitle...")
+                .content("TestContent...")
+                .writerEmail("tempuser100@naver.com")
                 .build();
-        System.out.println(service.write(userDTO));
-    }
 
+        Long uno = userService.register(dto);
+    }
 }

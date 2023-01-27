@@ -1,5 +1,6 @@
 package issueabroad.first.entity.member;
 
+import issueabroad.first.entity.article.BaseTimeEntity;
 import lombok.*;
 import org.springframework.data.domain.Persistable;
 
@@ -12,10 +13,11 @@ import javax.persistence.Id;
 @NoArgsConstructor
 @Getter
 @ToString
-public class Member {
+public class Member extends BaseTimeEntity {
 
     @Id
     private String email;
+
     private String password;
     private String name;
 

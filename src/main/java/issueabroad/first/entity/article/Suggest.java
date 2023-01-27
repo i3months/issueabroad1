@@ -10,5 +10,5 @@ import javax.persistence.Entity;
 @Setter
 @Entity
 @DiscriminatorValue("건의")
-public class Suggest extends User{
+public class Suggest extends PrevUser {
 }

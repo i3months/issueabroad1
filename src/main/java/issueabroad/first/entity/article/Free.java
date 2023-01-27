@@ -10,5 +10,5 @@ import javax.persistence.Entity;
 @Setter
 @Entity
 @DiscriminatorValue("자유")
-public class Free extends User{
+public class Free extends PrevUser {
 }

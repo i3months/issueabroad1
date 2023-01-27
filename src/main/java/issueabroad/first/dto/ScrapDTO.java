@@ -9,17 +9,20 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class ScrapDTO {
 
-    private Long uno;
+    private Long sno;
+
+    private String originContent;
+    private String originTitle;
 
     private String content;
     private String title;
 
-    private String type;
+    private String webSite;
+    private String url;
 
-    private String writerEmail;
-    private String writerName;
+    private String type;
 
     private LocalDateTime createDate;
     private LocalDateTime modDate;

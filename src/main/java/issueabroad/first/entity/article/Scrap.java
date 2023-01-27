@@ -10,17 +10,28 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @ToString
-public class Scrap {
+public class Scrap extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long sno;
+
+    @Column(columnDefinition = "TEXT")
     private String originContent;
+    @Column(columnDefinition = "TEXT")
     private String originTitle;
+
+    @Column(columnDefinition = "TEXT")
+    private String content;
+    @Column(columnDefinition = "TEXT")
+    private String title;
+
+    @Column(columnDefinition = "TEXT")
     private String webSite;
+    @Column(columnDefinition = "TEXT")
     private String url;
 
-    @OneToOne
-    private Article article;
+    private String type;
+    private Long viewCount;
 
 }

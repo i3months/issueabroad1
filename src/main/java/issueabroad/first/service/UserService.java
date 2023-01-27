@@ -1,39 +1,26 @@
 package issueabroad.first.service;
 
-import issueabroad.first.entity.article.User;
-import issueabroad.first.dto.PageRequestDTO;
-import issueabroad.first.dto.PageResultDTO;
 import issueabroad.first.dto.UserDTO;
+import issueabroad.first.entity.article.User;
+import issueabroad.first.entity.member.Member;
 
 public interface UserService {
-    Long write(UserDTO dto);
-    UserDTO read(Long id);
-
-    PageResultDTO<UserDTO, User> getList(PageRequestDTO requestDTO);
-    PageResultDTO<UserDTO, User> getListMain(PageRequestDTO requestDTO);
+    Long register(UserDTO dto);
 
     default User dtoToEntity(UserDTO dto) {
-        User entity = User.builder()
-                .id(dto.getId()) // article_id
+        Member member = Member.builder()
+                .email(dto.getWriterEmail())
+                .build();
+
+        User user = User.builder()
+                .uno(dto.getUno())
                 .title(dto.getTitle())
                 .content(dto.getContent())
-                .createDate(dto.getCreateDate())
-                .viewCount(dto.getViewCount())
-                .commentCount(dto.getCommentCount())
+                .writer(member)
                 .build();
-        return entity;
+
+        return user;
     }
 
-    default UserDTO entityToDto(User entity) {
-        UserDTO dto = UserDTO.builder()
-                .id(entity.getId()) // article_id
-                .title(entity.getTitle())
-                .content(entity.getContent())
-                .createDate(entity.getCreateDate())
-                .viewCount(entity.getViewCount())
-                .commentCount(entity.getCommentCount())
-                .build();
-        return dto;
 
-    }
 }

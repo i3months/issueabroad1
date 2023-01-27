@@ -1,30 +1,34 @@
 package issueabroad.first.entity.article;
 
+import issueabroad.first.entity.member.Member;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@DiscriminatorValue("사용자")
-public class User extends PrevArticle {
+@NoArgsConstructor
+@Getter
+@ToString(exclude = "writer")
+public class User extends BaseTimeEntity{
 
-    private Long id;
-    private String title;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long uno;
+
+    @Column(columnDefinition = "TEXT")
     private String content;
-    private LocalDateTime createDate;
+    @Column(columnDefinition = "TEXT")
+    private String title;
+
+    private String type;
     private Long viewCount;
-    private Long commentCount;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Member writer;
 
-    /**
-     * dtoToEntity를 위해 일단 정의해둔다.
-     */
+    public void changeTitle(String title) { this.title = title; }
+    public void changeContent(String content) { this.content = content; }
 
 }

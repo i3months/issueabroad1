@@ -2,6 +2,7 @@ package issueabroad.first.entity.reply;
 
 import issueabroad.first.entity.article.Article;
 import issueabroad.first.entity.article.BaseTimeEntity;
+import issueabroad.first.entity.article.Scrap;
 import lombok.*;
 
 import javax.persistence.*;
@@ -11,17 +12,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "article")
-public class Reply extends BaseTimeEntity {
+@ToString(exclude = "scrap")
+public class ScrapReply extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rno;
+    private Long srno;
+
+    @Column(columnDefinition = "TEXT")
     private String text;
+    @Column(columnDefinition = "TEXT")
     private String replyer;
 
-    @ManyToOne
-    private Article article;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Scrap scrap;
 
 
 }

@@ -28,11 +28,13 @@ class UserServiceTest {
     public void testGetList() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getListAll(pageRequestDTO);
+        PageResultDTO<UserDTO, Object[]> res = userService.getList(pageRequestDTO);
+
+        int idx = 1;
 
         System.out.println("---");
         for(UserDTO k : res.getDtoList()) {
-            System.out.println(k);
+            System.out.println(idx + " : " + k); idx++;
         }
         System.out.println("---");
     }
@@ -54,4 +56,89 @@ class UserServiceTest {
         userService.removeWithReplies(uno);
     }
 
+    @Test
+    public void testModify() {
+        UserDTO userDTO = UserDTO.builder()
+                .uno(2l)
+                .title("변경된 제목입니다...")
+                .content("변경된 내용입니다...")
+                .build();
+
+        userService.modify(userDTO);
+    }
+
+    @Test
+    public void testPageableMain() {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<UserDTO, Object[]> res = userService.getListMain(pageRequestDTO);
+
+        int idx = 1;
+        System.out.println("---");
+        for(UserDTO k : res.getDtoList()) {
+            System.out.println(idx + " : " +k);
+            idx++;
+        }
+        System.out.println("---");
+    }
+
+    @Test
+    public void testPageableSuggestMain() {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<UserDTO, Object[]> res = userService.getListMainSuggest(pageRequestDTO);
+
+        int idx = 1;
+        System.out.println("---");
+        for(UserDTO k : res.getDtoList()) {
+            System.out.println(idx + " : " +k);
+            idx++;
+        }
+        System.out.println("---");
+    }
+
+    @Test
+    public void testPageableSuggest() {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<UserDTO, Object[]> res = userService.getListSuggest(pageRequestDTO);
+
+        int idx = 1;
+        System.out.println("---");
+        for(UserDTO k : res.getDtoList()) {
+            System.out.println(idx + " : " +k);
+            idx++;
+        }
+        System.out.println("---");
+    }
+
+    @Test
+    public void testPageableFree() {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<UserDTO, Object[]> res = userService.getListFree(pageRequestDTO);
+
+        int idx = 1;
+        System.out.println("---");
+        for(UserDTO k : res.getDtoList()) {
+            System.out.println(idx + " : " +k);
+            idx++;
+        }
+        System.out.println("---");
+    }
+
+    @Test
+    public void testPageableMainFree() {
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<UserDTO, Object[]> res = userService.getListMainFree(pageRequestDTO);
+
+        int idx = 1;
+        System.out.println("---");
+        for(UserDTO k : res.getDtoList()) {
+            System.out.println(idx + " : " +k);
+            idx++;
+        }
+        System.out.println("---");
+    }
 }

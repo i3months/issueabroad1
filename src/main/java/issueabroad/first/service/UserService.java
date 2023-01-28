@@ -5,13 +5,22 @@ import issueabroad.first.dto.PageResultDTO;
 import issueabroad.first.dto.UserDTO;
 import issueabroad.first.entity.article.User;
 import issueabroad.first.entity.member.Member;
+import org.springframework.data.domain.Page;
 
 public interface UserService {
     Long register(UserDTO dto);
 
-    PageResultDTO<UserDTO, Object[]> getListAll(PageRequestDTO pageRequestDTO);
+    PageResultDTO<UserDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+    PageResultDTO<UserDTO, Object[]> getListMain(PageRequestDTO pageRequestDTO);
+    PageResultDTO<UserDTO, Object[]> getListSuggest(PageRequestDTO pageRequestDTO);
+    PageResultDTO<UserDTO, Object[]> getListMainSuggest(PageRequestDTO pageRequestDTO);
+    PageResultDTO<UserDTO, Object[]> getListFree(PageRequestDTO pageRequestDTO);
+    PageResultDTO<UserDTO, Object[]> getListMainFree(PageRequestDTO pageRequestDTO);
+
+
     UserDTO get(Long uno);
     void removeWithReplies(Long uno);
+    void modify(UserDTO userDTO);
 
     default UserDTO entityToDTO(User user, Member member, Long replyCount) {
         UserDTO userDTO = UserDTO.builder()

@@ -16,13 +16,23 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class UserRepositoryTest {
 
     @Autowired
     private UserRepository userRepository;
+
+
+    @Test
+    public void testGetUserWithReplyCountSuggest() {
+        Pageable pageable = PageRequest.of(0, 7, Sort.by("uno").descending());
+        Page<Object[]> res = userRepository.getUserWithReplyCountType("건의" ,pageable);
+
+        res.get().forEach(i -> {
+            Object[] arr = ((Object[])i);
+            System.out.println(Arrays.toString(arr));
+        });
+    }
 
     @Test
     public void testByNum() {
@@ -71,6 +81,44 @@ class UserRepositoryTest {
     }
 
     @Test
+    public void insertUserBoardSuggest() {
+        IntStream.rangeClosed(1, 100).forEach(i -> {
+            Member member = Member.builder()
+                    .email("tempuser" + i + "@naver.com")
+                    .build();
+
+            User user = User.builder()
+                    .title("TempTitle..." + i)
+                    .content("TempContent..." + i)
+                    .writer(member)
+                    .type("건의")
+                    .build();
+
+            userRepository.save(user);
+
+        });
+    }
+
+    @Test
+    public void insertUserBoardFree() {
+        IntStream.rangeClosed(1, 100).forEach(i -> {
+            Member member = Member.builder()
+                    .email("tempuser" + i + "@naver.com")
+                    .build();
+
+            User user = User.builder()
+                    .title("TempTitle..." + i)
+                    .content("TempContent..." + i)
+                    .writer(member)
+                    .type("자유")
+                    .build();
+
+            userRepository.save(user);
+
+        });
+    }
+
+    @Test
     public void insertUserBoard() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Member member = Member.builder()
@@ -87,6 +135,8 @@ class UserRepositoryTest {
 
         });
     }
+
+
 
 
 

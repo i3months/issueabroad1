@@ -17,6 +17,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query("select u, ur from User u left join UserReply ur on ur.user = u where u.uno = :uno")
     List<Object[]> getUserWithReply(@Param("uno") Long uno);
 
+
+    /**
+     * group by 로 게시물 하나당 한 줄로 처리
+     */
     @Query(value = "select u, w, count(ur) " +
             " from User u " +
             " left join u.writer w " +
@@ -24,7 +28,16 @@ public interface UserRepository extends JpaRepository<User, Long> {
             " group by u",
             countQuery = "select count(u) from User u")
     Page<Object[]> getUserWithReplyCount(Pageable pageable);
-    // group by 로 게시물 하나당 한 줄로 처리
+
+    @Query(value = "select u, w, count(ur) " +
+            " from User u " +
+            " left join u.writer w " +
+            " left join UserReply ur on ur.user = u " +
+            " where u.type = :type " +
+            " group by u",
+            countQuery = "select count(u) from User u")
+    Page<Object[]> getUserWithReplyCountType(@Param("type") String type, Pageable pageable);
+
 
     @Query("select u, w, count(ur) " +
             " from User u left join u.writer w " +

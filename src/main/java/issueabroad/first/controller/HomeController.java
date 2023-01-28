@@ -4,7 +4,10 @@
 //import issueabroad.first.service.ArticleService;
 //import issueabroad.first.service.CrawlService;
 ////import issueabroad.first.service.UserService;
+//import issueabroad.first.service.ScrapService;
+//import issueabroad.first.service.UserService;
 //import lombok.RequiredArgsConstructor;
+//import lombok.extern.log4j.Log4j2;
 //import lombok.extern.slf4j.Slf4j;
 //import org.springframework.stereotype.Controller;
 //import org.springframework.ui.Model;
@@ -13,20 +16,22 @@
 //import org.springframework.web.bind.annotation.RequestMapping;
 //
 //@Controller
-//@Slf4j
+//@Log4j2
 //@RequiredArgsConstructor
 //public class HomeController {
 //
-////    private final UserService userService;
-//    private final CrawlService crawlService;
-//    private final ArticleService articleService;
+//    private final ScrapService scrapService;
+//    private final UserService userService;
 //
 //    @GetMapping("/")
 //    public String home2(PageRequestDTO pageRequestDTO, Model model) {
-//        log.info("Home Controller called");
+//        log.info("Home Controller called : " + pageRequestDTO);
 //
-////        model.addAttribute("all", articleService.)
-//        return "a";
+//        model.addAttribute("free", userService.getListMainFree(pageRequestDTO));
+//        model.addAttribute("suggest", userService.getListMainSuggest(pageRequestDTO));
+//
+//
+//        return "mainBeforeLogin";
 //    }
 //
 //    @GetMapping("/")
@@ -52,18 +57,18 @@
 //        pageRequestDTO.setType("d");
 //        pageRequestDTO.setKeyword("자유");
 //
-////        model.addAttribute("free", userService.getListMain(pageRequestDTO));
+//        model.addAttribute("free", userService.getListMain(pageRequestDTO));
 //
 //        pageRequestDTO.setType("d");
 //        pageRequestDTO.setKeyword("건의");
 //
-////        model.addAttribute("suggest", userService.getListMain(pageRequestDTO));
+//        model.addAttribute("suggest", userService.getListMain(pageRequestDTO));
 //
 //        return "mainBeforeLogin";
 //    }
 //
 //    @GetMapping("/home")
-//    public String home2() {
+//    public String homeRedirect() {
 //
 //        return "redirect:/";
 //    }

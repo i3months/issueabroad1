@@ -24,7 +24,7 @@ import java.util.function.Function;
 @Log4j2
 public class UserServiceImpl implements UserService{
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
     private final UserReplyRepository replyRepository;
 
     @Override
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
         log.info(dto);
 
         User user = dtoToEntity(dto);
-        repository.save(user);
+        userRepository.save(user);
 
         return user.getUno();
     }
@@ -43,7 +43,7 @@ public class UserServiceImpl implements UserService{
 
         Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = repository.getUserWithReplyCount(
+        Page<Object[]> res = userRepository.getUserWithReplyCount(
                 pageRequestDTO.getPageable(Sort.by("uno").descending()));
 
 
@@ -56,7 +56,7 @@ public class UserServiceImpl implements UserService{
 
         Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = repository.getUserWithReplyCount(
+        Page<Object[]> res = userRepository.getUserWithReplyCount(
                 pageRequestDTO.getPageableMain(Sort.by("uno").descending()));
 
         return new PageResultDTO<>(res, fn);
@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService{
 
         Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = repository.getUserWithReplyCountType("건의",
+        Page<Object[]> res = userRepository.getUserWithReplyCountType("건의",
                 pageRequestDTO.getPageable(Sort.by("uno").descending()));
 
 
@@ -83,7 +83,7 @@ public class UserServiceImpl implements UserService{
 
         Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = repository.getUserWithReplyCountType("건의",
+        Page<Object[]> res = userRepository.getUserWithReplyCountType("건의",
                 pageRequestDTO.getPageableMain(Sort.by("uno").descending()));
 
 
@@ -96,7 +96,7 @@ public class UserServiceImpl implements UserService{
 
         Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = repository.getUserWithReplyCountType("자유",
+        Page<Object[]> res = userRepository.getUserWithReplyCountType("자유",
                 pageRequestDTO.getPageable(Sort.by("uno").descending()));
 
 
@@ -109,7 +109,7 @@ public class UserServiceImpl implements UserService{
 
         Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = repository.getUserWithReplyCountType("자유",
+        Page<Object[]> res = userRepository.getUserWithReplyCountType("자유",
                 pageRequestDTO.getPageableMain(Sort.by("uno").descending()));
 
 
@@ -149,7 +149,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO get(Long uno) {
-        Object res = repository.getUserByUno(uno);
+        Object res = userRepository.getUserByUno(uno);
         Object[] arr = (Object[])res;
 
         return entityToDTO((User)arr[0], (Member)arr[1], (Long)arr[2]);
@@ -159,7 +159,7 @@ public class UserServiceImpl implements UserService{
     @Transactional
     public void removeWithReplies(Long uno) {
         replyRepository.deleteByUno(uno);
-        repository.deleteById(uno);
+        userRepository.deleteById(uno);
     }
 
     @Override
@@ -168,11 +168,11 @@ public class UserServiceImpl implements UserService{
         /**
          * 로딩 지연을 위해 getOne 사용
          */
-        User user = repository.getOne(userDTO.getUno());
+        User user = userRepository.getOne(userDTO.getUno());
 
         user.changeTitle(userDTO.getTitle());
         user.changeContent(userDTO.getContent());
 
-        repository.save(user);
+        userRepository.save(user);
     }
 }

@@ -1,8 +1,6 @@
 package issueabroad.first.repository;
 
 import issueabroad.first.entity.article.Scrap;
-import issueabroad.first.entity.article.User;
-import issueabroad.first.entity.member.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,8 +15,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
 class ScrapRepositoryTest {
 
@@ -29,7 +25,7 @@ class ScrapRepositoryTest {
     @Test
     public void testGetUserWithReplyCountAmerica() {
         Pageable pageable = PageRequest.of(0, 7, Sort.by("sno").descending());
-        Page<Object[]> res = scrapRepository.getUserWithReplyCountType("미국", pageable);
+        Page<Object[]> res = scrapRepository.getScrapWithReplyCountType("미국", pageable);
 
         System.out.println("-------------");
         res.get().forEach(i -> {
@@ -42,7 +38,7 @@ class ScrapRepositoryTest {
     @Test
     public void testGetUserWithReplyCountJapan() {
         Pageable pageable = PageRequest.of(0, 7, Sort.by("sno").descending());
-        Page<Object[]> res = scrapRepository.getUserWithReplyCountType("일본" ,pageable);
+        Page<Object[]> res = scrapRepository.getScrapWithReplyCountType("일본" ,pageable);
 
         System.out.println("-------------");
         res.get().forEach(i -> {
@@ -99,10 +95,10 @@ class ScrapRepositoryTest {
     public void insertScrapJapan() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Scrap scrap = Scrap.builder()
-                    .originTitle("원문 제목입니다.." + i)
-                    .originContent("원문 내용입니다.." + i)
-                    .title("번역된 제목입니다.." + i)
-                    .content("번역된 내용입니다.." + i)
+                    .originTitle("(일본)원문 제목입니다.." + i)
+                    .originContent("(일본)원문 내용입니다.." + i)
+                    .title("(일본)번역된 제목입니다.." + i)
+                    .content("(일본)번역된 내용입니다.." + i)
                     .type("일본")
                     .webSite("스크랩 해 온 웹사이트 이름입니다.." + i)
                     .viewCount(0l)
@@ -118,13 +114,13 @@ class ScrapRepositoryTest {
     public void insertScrapAmerica() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Scrap scrap = Scrap.builder()
-                    .originTitle("원문 제목입니다.." + i)
-                    .originContent("원문 내용입니다.." + i)
-                    .title("번역된 제목입니다.." + i)
-                    .content("번역된 내용입니다.." + i)
+                    .originTitle("(미국)원문 제목입니다.." + i)
+                    .originContent("(미국)원문 내용입니다.." + i)
+                    .title("(미국)번역된 제목입니다.." + i)
+                    .content("(미국)번역된 내용입니다.." + i)
                     .type("미국")
                     .webSite("스크랩 해 온 웹사이트 이름입니다.." + i)
-                    .viewCount(0l)
+                    .viewCount((long)i)
                     .url("스크랩 한 게시물로 이동할 수 있는 링크입니다.." + i)
                     .build();
 

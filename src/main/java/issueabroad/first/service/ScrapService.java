@@ -1,10 +1,25 @@
 package issueabroad.first.service;
 
+import issueabroad.first.dto.PageRequestDTO;
+import issueabroad.first.dto.PageResultDTO;
 import issueabroad.first.dto.ScrapDTO;
+import issueabroad.first.dto.UserDTO;
 import issueabroad.first.entity.article.Scrap;
 import issueabroad.first.entity.member.Member;
 
 public interface ScrapService {
+
+    PageResultDTO<ScrapDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListMain(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListViewCount(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListViewCountMain(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListAmerica(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListMainAmerica(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListJapan(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListMainJapan(PageRequestDTO pageRequestDTO);
+
+    ScrapDTO get(Long sno);
+    void removeWithReplies(Long sno);
 
     default ScrapDTO entityToDTO(Scrap scrap, Long replyCount) {
         ScrapDTO scrapDTO = ScrapDTO.builder()
@@ -17,6 +32,8 @@ public interface ScrapService {
                 .modDate(scrap.getModDate())
                 .viewCount(scrap.getViewCount())
                 .type(scrap.getType())
+                .url(scrap.getUrl())
+                .webSite(scrap.getWebSite())
                 .replyCount(replyCount.intValue())
                 .build();
 

@@ -24,7 +24,7 @@ public class ScrapDTO {
 
     private String type;
 
-    private LocalDateTime createDate;
+    private LocalDateTime regDate;
     private LocalDateTime modDate;
 
     private int replyCount;

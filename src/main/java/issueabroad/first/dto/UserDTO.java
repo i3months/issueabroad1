@@ -21,7 +21,7 @@ public class UserDTO {
     private String writerEmail;
     private String writerName;
 
-    private LocalDateTime createDate;
+    private LocalDateTime regDate;
     private LocalDateTime modDate;
 
     private int replyCount;

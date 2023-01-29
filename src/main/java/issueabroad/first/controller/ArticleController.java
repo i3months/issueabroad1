@@ -42,7 +42,9 @@ public class ArticleController {
     @GetMapping("/user/read/{uno}")
     public String readUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         UserDTO dto = userService.get(uno);
+        userService.updateViewCount(uno);
 
+        model.addAttribute("dto", dto);
 
         return "userArticle";
     }

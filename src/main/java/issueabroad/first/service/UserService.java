@@ -50,6 +50,8 @@ public interface UserService {
                 .title(dto.getTitle())
                 .content(dto.getContent())
                 .writer(member)
+                .type(dto.getType())
+                .viewCount(dto.getViewCount())
                 .build();
 
         return user;

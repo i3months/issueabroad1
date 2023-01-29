@@ -116,6 +116,11 @@ public class UserServiceImpl implements UserService{
         return new PageResultDTO<>(res, fn);
     }
 
+    @Override
+    public int updateViewCount(Long uno) {
+        return userRepository.updateViewCount(uno);
+    }
+
 
     private BooleanBuilder getSearch(PageRequestDTO requestDTO) {
         String type = requestDTO.getType();

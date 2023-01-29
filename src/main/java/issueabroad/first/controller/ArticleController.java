@@ -1,6 +1,5 @@
 package issueabroad.first.controller;
 
-import issueabroad.first.dto.CrawlDTO;
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.UserDTO;
 import issueabroad.first.service.ScrapService;
@@ -32,19 +31,20 @@ public class ArticleController {
 
     @PostMapping("/register")
     public String registerPost(UserDTO dto, RedirectAttributes redirectAttributes) {
-        log.info("New article.." + dto);
-
         dto.setViewCount(0l);
-
-        System.out.println("----------------------");
-        System.out.println(dto);
-        System.out.println("----------------------");
+        log.info("New article.." + dto);
 
         Long uno = userService.register(dto);
 
-        redirectAttributes.addFlashAttribute("message", uno);
-
         return "redirect:/";
+    }
+
+    @GetMapping("/user/read/{uno}")
+    public String readUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+        UserDTO dto = userService.get(uno);
+
+
+        return "userArticle";
     }
 
 

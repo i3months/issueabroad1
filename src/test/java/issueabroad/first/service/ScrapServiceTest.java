@@ -155,4 +155,12 @@ class ScrapServiceTest {
         System.out.println("----------");
     }
 
+    @Test
+    public void testViewCountScrap() {
+        ScrapDTO dto = scrapService.get(500l);
+        System.out.println("Before : " + dto.getViewCount());
+        scrapService.updateViewCount(500l);
+        dto = scrapService.get(500l);
+        System.out.println("After : " + dto.getViewCount());
+    }
 }

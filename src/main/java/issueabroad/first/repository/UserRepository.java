@@ -4,6 +4,7 @@ import issueabroad.first.entity.article.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -45,5 +46,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
             " where u.uno = :uno")
     Object getUserByUno(@Param("uno") Long uno);
 
+
+    @Modifying
+    @Query("update User u set u.viewCount = u.viewCount + 1 where u.uno = :uno")
+    int updateViewCount(Long uno);
 
 }

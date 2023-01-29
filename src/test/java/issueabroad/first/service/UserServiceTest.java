@@ -141,4 +141,14 @@ class UserServiceTest {
         }
         System.out.println("---");
     }
+
+    @Test
+    public void testViewCount() {
+
+        UserDTO dto1 = userService.get(310l);
+        System.out.println("Before : " + dto1.getViewCount());
+        userService.updateViewCount(310l);
+        dto1 = userService.get(310l);
+        System.out.println("Afteer : " + dto1.getViewCount());
+    }
 }

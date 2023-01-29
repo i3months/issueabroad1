@@ -6,6 +6,7 @@ import issueabroad.first.dto.ScrapDTO;
 import issueabroad.first.dto.UserDTO;
 import issueabroad.first.entity.article.Scrap;
 import issueabroad.first.entity.member.Member;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface ScrapService {
 
@@ -17,6 +18,9 @@ public interface ScrapService {
     PageResultDTO<ScrapDTO, Object[]> getListMainAmerica(PageRequestDTO pageRequestDTO);
     PageResultDTO<ScrapDTO, Object[]> getListJapan(PageRequestDTO pageRequestDTO);
     PageResultDTO<ScrapDTO, Object[]> getListMainJapan(PageRequestDTO pageRequestDTO);
+
+    @Transactional
+    public int updateViewCount(Long sno);
 
     ScrapDTO get(Long sno);
     void removeWithReplies(Long sno);

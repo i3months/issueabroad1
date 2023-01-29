@@ -4,6 +4,7 @@ import issueabroad.first.entity.article.Scrap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -34,4 +35,8 @@ public interface ScrapRepository extends JpaRepository<Scrap, Long> {
             " left outer join ScrapReply sr on sr.scrap = s " +
             " where s.sno = :sno")
     Object getUserBySno(@Param("sno") Long sno);
+
+    @Modifying
+    @Query("update Scrap s set s.viewCount = s.viewCount + 1 where s.sno = :sno")
+    int updateViewCount(Long sno);
 }

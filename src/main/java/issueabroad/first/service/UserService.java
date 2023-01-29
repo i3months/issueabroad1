@@ -6,6 +6,7 @@ import issueabroad.first.dto.UserDTO;
 import issueabroad.first.entity.article.User;
 import issueabroad.first.entity.member.Member;
 import org.springframework.data.domain.Page;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface UserService {
     Long register(UserDTO dto);
@@ -17,6 +18,9 @@ public interface UserService {
     PageResultDTO<UserDTO, Object[]> getListFree(PageRequestDTO pageRequestDTO);
     PageResultDTO<UserDTO, Object[]> getListMainFree(PageRequestDTO pageRequestDTO);
 
+
+    @Transactional
+    public int updateViewCount(Long uno);
 
     UserDTO get(Long uno);
     void removeWithReplies(Long uno);

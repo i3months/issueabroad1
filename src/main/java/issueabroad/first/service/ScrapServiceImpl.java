@@ -119,6 +119,11 @@ public class ScrapServiceImpl implements ScrapService{
     }
 
     @Override
+    public int updateViewCount(Long sno) {
+        return scrapRepository.updateViewCount(sno);
+    }
+
+    @Override
     public ScrapDTO get(Long sno) {
         Object res = scrapRepository.getUserBySno(sno);
         Object[] arr = (Object[])res;

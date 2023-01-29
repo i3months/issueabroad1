@@ -74,10 +74,10 @@ public class ScrapServiceImpl implements ScrapService{
     public PageResultDTO<ScrapDTO, Object[]> getListAmerica(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], ScrapDTO> fn = (en -> entityToDTO((Scrap)en[0], (Long)en[1]));
-
         Page<Object[]> res = scrapRepository.getScrapWithReplyCountType("미국",
                 pageRequestDTO.getPageable(Sort.by("sno").descending()));
+
+        Function<Object[], ScrapDTO> fn = (en -> entityToDTO((Scrap)en[0], (Long)en[1]));
 
         return new PageResultDTO<>(res, fn);
     }

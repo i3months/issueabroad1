@@ -35,7 +35,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             " left join UserReply ur on ur.user = u " +
             " where u.type = :type " +
             " group by u",
-            countQuery = "select count(u) from User u")
+            countQuery = "select count(u) from User u where u.type = :type")
     Page<Object[]> getUserWithReplyCountType(@Param("type") String type, Pageable pageable);
 
 

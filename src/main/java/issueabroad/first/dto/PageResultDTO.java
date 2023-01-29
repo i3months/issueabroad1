@@ -13,9 +13,9 @@ import java.util.stream.IntStream;
 public class PageResultDTO<DTO, EN> {
 
     private List<DTO> dtoList;
-    private int totalPage; // 총 페이지 번호 수
+    private int totalPage; // 게시글 총합
 
-    private int page; // 현재 페이지 번호
+    private int page; // 현재 페이지
     private int size; // 목록의 크기
 
     private int start, end;

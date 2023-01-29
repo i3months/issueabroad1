@@ -70,10 +70,11 @@
 
                         <a th:each="dto : ${result.dtoList}"
                             class="list-group-item list-group-item-action justify-content-between align-items-center"
-                            th:href="@{/{url}/read/{id}(url = ${url}, id = ${dto.id})}">
-                            <time>[[${dto.createDate}]]</time>
+                            th:href="@{/{url}/read/{uno}(url = ${url}, uno = ${dto.uno})}">
+                            <time>[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</time>
+                            <span class="userid2 comment">[[${dto.writerName}]]</span>
                             <span>[[${dto.title}]]</span>
-                            <span class="badge bg-primary rounded-pill comment">[[${dto.commentCount}]]</span>
+                            <span class="badge bg-primary rounded-pill comment">[[${dto.replyCount}]]</span>
                         </a>
                     </div>
                 </div>

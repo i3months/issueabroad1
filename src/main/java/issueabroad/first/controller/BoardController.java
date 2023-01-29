@@ -57,30 +57,24 @@ public class BoardController {
         return "scrapBoard";
     }
 
-//    @GetMapping("/free")
-//    public String free(PageRequestDTO pageRequestDTO, Model model) {
-//        pageRequestDTO.setType("d");
-//        pageRequestDTO.setKeyword("자유");
-//
-////        model.addAttribute("result", userService.getList(pageRequestDTO));
-//        model.addAttribute("title", "자유");
-//        model.addAttribute("url", "user");
-//        model.addAttribute("paging", "free");
-//
-//        return "userBoard";
-//    }
-//
-//    @GetMapping("/suggest")
-//    public String suggest(PageRequestDTO pageRequestDTO, Model model) {
-//        pageRequestDTO.setType("d");
-//        pageRequestDTO.setKeyword("건의");
-//
-////        model.addAttribute("result", userService.getList(pageRequestDTO));
-//        model.addAttribute("title", "건의");
-//        model.addAttribute("url", "user");
-//        model.addAttribute("paging", "suggest");
-//
-//        return "userBoard";
-//    }
+    @GetMapping("/free")
+    public String free(PageRequestDTO pageRequestDTO, Model model) {
+        model.addAttribute("result", userService.getListFree(pageRequestDTO));
+        model.addAttribute("title", "자유");
+        model.addAttribute("url", "user");
+        model.addAttribute("paging", "free");
+
+        return "userBoard";
+    }
+
+    @GetMapping("/suggest")
+    public String suggest(PageRequestDTO pageRequestDTO, Model model) {
+        model.addAttribute("result", userService.getListSuggest(pageRequestDTO));
+        model.addAttribute("title", "건의");
+        model.addAttribute("url", "user");
+        model.addAttribute("paging", "suggest");
+
+        return "userBoard";
+    }
 
 }

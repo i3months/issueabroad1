@@ -26,7 +26,7 @@ public interface ScrapRepository extends JpaRepository<Scrap, Long> {
             " left join ScrapReply sr on sr.scrap = s " +
             " where s.type = :type " +
             " group by s",
-            countQuery = "select count(s) from Scrap s")
+            countQuery = "select count(s) from Scrap s where s.type = :type")
     Page<Object[]> getScrapWithReplyCountType(@Param("type") String type, Pageable pageable);
 
     @Query("select s, count(sr) " +

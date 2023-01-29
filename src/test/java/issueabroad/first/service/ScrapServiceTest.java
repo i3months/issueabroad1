@@ -71,6 +71,8 @@ class ScrapServiceTest {
             idx++;
         }
         System.out.println("---------");
+        System.out.println(res.getTotalPage());
+
     }
 
     @Test

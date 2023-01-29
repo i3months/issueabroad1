@@ -16,6 +16,15 @@ time {
     color: #2FA4E7;
 }
 
+.userid2 {
+    float:right;
+    margin-left:10px;
+    margin-right:30px;
+    font-size:13px;
+    letter-spacing:0;
+    color: #2FA4E7;
+}
+
 .comment {
     margin-left:5px;
 }

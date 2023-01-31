@@ -18,6 +18,7 @@ public interface ScrapService {
     PageResultDTO<ScrapDTO, Object[]> getListMainAmerica(PageRequestDTO pageRequestDTO);
     PageResultDTO<ScrapDTO, Object[]> getListJapan(PageRequestDTO pageRequestDTO);
     PageResultDTO<ScrapDTO, Object[]> getListMainJapan(PageRequestDTO pageRequestDTO);
+    PageResultDTO<ScrapDTO, Object[]> getListSearch(PageRequestDTO pageRequestDTO);
 
     @Transactional
     public int updateViewCount(Long sno);

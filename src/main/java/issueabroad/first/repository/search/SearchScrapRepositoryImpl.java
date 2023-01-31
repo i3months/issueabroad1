@@ -100,15 +100,15 @@ public class SearchScrapRepositoryImpl extends QuerydslRepositorySupport impleme
 
         List<Tuple> res = tuple.fetch();
 
-        log.info("-------------------");
-        log.info(res);
-        log.info("-------------------");
+//        log.info("-------------------");
+//        log.info(res);
+//        log.info("-------------------");
 
         long count = tuple.fetchCount();
 
-        log.info("-------------------");
-        log.info("count : " + count);
-        log.info("-------------------");
+//        log.info("-------------------");
+//        log.info("count : " + count);
+//        log.info("-------------------");
 
         return new PageImpl<Object[]>(
                 res.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);

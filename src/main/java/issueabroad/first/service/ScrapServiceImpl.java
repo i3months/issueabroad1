@@ -35,6 +35,19 @@ public class ScrapServiceImpl implements ScrapService{
     }
 
     @Override
+    public PageResultDTO<ScrapDTO, Object[]> getListSearch(PageRequestDTO pageRequestDTO) {
+        Function<Object[], ScrapDTO> fn = (en -> entityToDTO((Scrap)en[0], (Long)en[1]));
+
+        Page<Object[]> res = scrapRepository.searchPage(
+                pageRequestDTO.getKeyword(),
+                pageRequestDTO.getPageable(Sort.by("sno").descending())
+        );
+
+        return new PageResultDTO<>(res, fn);
+    }
+
+
+    @Override
     public PageResultDTO<ScrapDTO, Object[]> getListMain(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 

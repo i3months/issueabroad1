@@ -84,13 +84,14 @@ class UserRepositoryTest {
     public void insertUserBoardSuggest() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Member member = Member.builder()
-                    .email("tempuser" + i + "@naver.com")
+                    .email("user" + i + "@naver.com")
                     .build();
 
             User user = User.builder()
-                    .title("TempTitle..." + i)
-                    .content("TempContent..." + i)
+                    .title("suggest title..." + i)
+                    .content("suggest content..." + i)
                     .writer(member)
+                    .viewCount(0l)
                     .type("건의")
                     .build();
 
@@ -103,13 +104,14 @@ class UserRepositoryTest {
     public void insertUserBoardFree() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Member member = Member.builder()
-                    .email("tempuser" + i + "@naver.com")
+                    .email("user" + i + "@naver.com")
                     .build();
 
             User user = User.builder()
-                    .title("TempTitle..." + i)
-                    .content("TempContent..." + i)
+                    .title("free title..." + i)
+                    .content("free content..." + i)
                     .writer(member)
+                    .viewCount(0l)
                     .type("자유")
                     .build();
 

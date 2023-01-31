@@ -21,7 +21,7 @@ class ScrapReplyRepositoryTest {
     @Test
     public void insertScrapReply() {
         IntStream.rangeClosed(1, 2000).forEach(i -> {
-            long sno = (long)(Math.random() * 500) + 1;
+            long sno = (long)(Math.random() * 200) + 1;
 
             Scrap scrap = Scrap.builder()
                     .sno(sno)

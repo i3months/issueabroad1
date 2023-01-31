@@ -1,6 +1,5 @@
 package issueabroad.first.entity.reply;
 
-import issueabroad.first.entity.article.Article;
 import issueabroad.first.entity.article.BaseTimeEntity;
 import issueabroad.first.entity.article.Scrap;
 import lombok.*;

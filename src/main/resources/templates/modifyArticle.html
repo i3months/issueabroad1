@@ -85,7 +85,9 @@
                         <textarea class="form-control contentstyle" name="content" rows="12" placeholder="게시글의 내용을 입력하세요.">[[${dto.content}]]</textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary tomargin">수정</button>
+                    <button type="submit" class="btn btn-primary tomargin modifyBtn">수정</button>
+                    <button type="button" class="btn btn-primary tomargin removeBtn">삭제</button>
+                    <button type="button" class="btn btn-primary tomargin cancelBtn">취소</button>
 
                 </form>
             </div>
@@ -134,18 +136,52 @@
     <script th:src="@{/js/custom.js}"></script>
     <script th:src="@{/js/script.js}"></script>
 
-<!--    <script th:inline="javascript">-->
-<!--        /*<![CDATA[*/-->
+    <script th:inline="javascript">
+        /*<![CDATA[*/
 
-<!--        $(document).ready(function(){-->
-<!--            alert("asdsf");-->
+        let articleForm = $("form");
+        const uno = /*[[${dto.uno}]]*/;
 
-<!--            $(".inputstyle").value([[${dto.title}]]);-->
-<!--        });-->
 
-<!--        /*]]>*/-->
+        // $(".modifyBtn").click(function() {
+        //
+        //     if(!confirm("게시글을 수정하시겠습니까?")) {
+        //         return;
+        //     }
+        //
+        //     articleForm
+        //         .attr("action", "/user/modify/" + uno)
+        //         .attr("method", "post");
+        //
+        //     articleForm.submit();
+        // });
 
-<!--    </script>-->
+        $(".removeBtn").click(function() {
+
+            if(!confirm("게시글을 삭제하시겠습니까?")) {
+                return;
+            }
+
+            articleForm
+                .attr("action", "/user/remove/" + uno)
+                .attr("method", "post");
+
+            articleForm.submit();
+        });
+
+        $(".cancelBtn").click(function() {
+            articleForm.empty();
+
+            articleForm
+                .attr("action", "/")
+                .attr("method", "get");
+
+            articleForm.submit();
+        });
+
+        /*]]>*/
+
+    </script>
 
 </body>
 </th:block>

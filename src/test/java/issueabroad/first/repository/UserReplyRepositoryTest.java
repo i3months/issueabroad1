@@ -18,8 +18,8 @@ class UserReplyRepositoryTest {
 
     @Test
     public void insertUserReply() {
-        IntStream.rangeClosed(1, 300).forEach(i -> {
-            long uno = (long)(Math.random() * 200) + 100;
+        IntStream.rangeClosed(1, 1000).forEach(i -> {
+            long uno = (long)(Math.random() * 200) + 1;
 
             User user = User.builder()
                     .uno(uno)

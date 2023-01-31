@@ -1,6 +1,5 @@
 package issueabroad.first.controller;
 
-import issueabroad.first.dto.CrawlDTO;
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.ScrapDTO;
 import issueabroad.first.dto.UserDTO;
@@ -50,12 +49,18 @@ public class ArticleController {
 
         return "userArticle";
     }
+
+
     @PostMapping("/user/modify/{uno}")
     public String modifyUser(@PathVariable("uno") Long uno, UserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
         userService.modify(dto);
+
+        System.out.println("0-------------0");
+        System.out.println(uno);
+        System.out.println("0-------------0");
+
         return "redirect:/";
     }
-
 
     @GetMapping("/user/modify/{uno}")
     public String modifyUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
@@ -64,7 +69,13 @@ public class ArticleController {
         model.addAttribute("dto", dto);
 
         return "modifyArticle";
+    }
 
+    @PostMapping("/user/remove/{uno}")
+    public String removeUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
+        userService.removeWithReplies(uno);
+
+        return "redirect:/";
     }
 
 
@@ -77,13 +88,5 @@ public class ArticleController {
 
         return "scrapArticle";
     }
-//
-//    @GetMapping("/user/read/{id}")
-//    public String readUser(@PathVariable("id") Long id, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
-//        UserDTO dto = userService.read(id);
-//        model.addAttribute("dto", dto);
-//
-//        return "userArticle";
-//    }
 
 }

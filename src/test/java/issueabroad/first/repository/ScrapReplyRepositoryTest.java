@@ -18,6 +18,7 @@ class ScrapReplyRepositoryTest {
     @Autowired
     private ScrapReplyRepository scrapReplyRepository;
 
+
     @Test
     public void insertScrapReply() {
         IntStream.rangeClosed(1, 2000).forEach(i -> {

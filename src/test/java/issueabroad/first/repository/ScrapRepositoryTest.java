@@ -21,6 +21,10 @@ class ScrapRepositoryTest {
     @Autowired
     private ScrapRepository scrapRepository;
 
+    @Test
+    public void testSearch1() {
+        scrapRepository.search1();
+    }
 
     @Test
     public void testGetUserWithReplyCountAmerica() {

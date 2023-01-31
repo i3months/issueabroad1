@@ -1,6 +1,7 @@
 package issueabroad.first.repository;
 
 import issueabroad.first.entity.article.Scrap;
+import issueabroad.first.repository.search.SearchScrapRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ScrapRepository extends JpaRepository<Scrap, Long> {
+public interface ScrapRepository extends JpaRepository<Scrap, Long>, SearchScrapRepository {
 
     @Query("select s, sr from Scrap s left join ScrapReply sr on sr.scrap = s where s.sno = :sno")
     List<Object[]> getScrapWithReply(@Param("sno") Long sno);

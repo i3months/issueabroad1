@@ -27,6 +27,20 @@ class ScrapRepositoryTest {
     }
 
     @Test
+    public void testSearchPage() {
+        Pageable pageable = PageRequest.of(0, 10, Sort.by("sno").descending());
+
+        Page<Object[]> res = scrapRepository.searchPage("일본", pageable);
+
+        int idx = 1;
+
+        for(Object[] k : res) {
+            System.out.println(idx + " : " + Arrays.toString(k));
+            idx++;
+        }
+    }
+
+    @Test
     public void testGetUserWithReplyCountAmerica() {
         Pageable pageable = PageRequest.of(0, 7, Sort.by("sno").descending());
         Page<Object[]> res = scrapRepository.getScrapWithReplyCountType("미국", pageable);

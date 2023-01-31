@@ -31,4 +31,6 @@ public class User extends BaseTimeEntity{
     public void changeTitle(String title) { this.title = title; }
     public void changeContent(String content) { this.content = content; }
 
+    public void changeType(String type) { this.type = type; }
+
 }

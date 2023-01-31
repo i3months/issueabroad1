@@ -50,6 +50,22 @@ public class ArticleController {
 
         return "userArticle";
     }
+    @PostMapping("/user/modify/{uno}")
+    public String modifyUser(@PathVariable("uno") Long uno, UserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
+        userService.modify(dto);
+        return "redirect:/";
+    }
+
+
+    @GetMapping("/user/modify/{uno}")
+    public String modifyUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+        UserDTO dto = userService.get(uno);
+
+        model.addAttribute("dto", dto);
+
+        return "modifyArticle";
+
+    }
 
 
 

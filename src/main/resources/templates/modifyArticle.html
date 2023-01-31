@@ -61,9 +61,9 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10">
-                <h3 class="writetitle">게시글 작성하기</h3>
+                <h3 class="writetitle">게시글 수정하기</h3>
 
-                <form th:action="@{/register}" th:method="post">
+                <form th:action="@{/user/modify/{uno}(uno = ${dto.uno})}" th:method="post">
                     <fieldset class="form-group categorygroup">
                         <span>
                             <input class="form-check-input" type="radio" name="type" value="자유" id="free" checked>
@@ -75,30 +75,17 @@
                         </span>
                     </fieldset>
 
-                    <div class="row tomargin">
-                        <div class="writerpassword col-lg-6">
-                            <label class="col-from-label titlelabel" for="inputPassword">Email</label>
-                            <input type="email" class="form-control inputstyle2" placeholder="이메일을 입력하세요." id="inputPassword" name="writerEmail">
-                        </div>
-
-                        <div class="writername col-lg-6">
-<!--                            <label class="col-from-label titlelabel" for="inputName">Name</label>-->
-<!--                            <input type="text" class="form-control inputstyle2" placeholder="이름을 입력하세요." id="inputName" name="writerName">-->
-                        </div>
-                    </div>
-
-
                     <div class="titleinput">
                         <label class="col-from-label titlelabel" for="inputTitle">Title</label>
-                        <input type="text" class="form-control inputstyle" placeholder="게시글의 제목을 입력하세요." id="inputTitle" name="title">
+                        <textarea class="form-control inputstyle" placeholder="게시글의 제목을 입력하세요." rows="1" id="inputTitle" name="title">[[${dto.title}]]</textarea>
                     </div>
 
                     <div class="contentinput">
                         <label class="col-from-label titlelabel">Content</label>
-                        <textarea class="form-control contentstyle" name="content" rows="12" placeholder="게시글의 내용을 입력하세요."></textarea>
+                        <textarea class="form-control contentstyle" name="content" rows="12" placeholder="게시글의 내용을 입력하세요.">[[${dto.content}]]</textarea>
                     </div>
 
-                    <button type="submit" class="btn btn-primary tomargin">등록</button>
+                    <button type="submit" class="btn btn-primary tomargin">수정</button>
 
                 </form>
             </div>
@@ -146,6 +133,20 @@
     <script th:src="@{/js/prism.js}"></script>
     <script th:src="@{/js/custom.js}"></script>
     <script th:src="@{/js/script.js}"></script>
+
+<!--    <script th:inline="javascript">-->
+<!--        /*<![CDATA[*/-->
+
+<!--        $(document).ready(function(){-->
+<!--            alert("asdsf");-->
+
+<!--            $(".inputstyle").value([[${dto.title}]]);-->
+<!--        });-->
+
+<!--        /*]]>*/-->
+
+<!--    </script>-->
+
 </body>
 </th:block>
 </html>

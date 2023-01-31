@@ -177,6 +177,7 @@ public class UserServiceImpl implements UserService{
 
         user.changeTitle(userDTO.getTitle());
         user.changeContent(userDTO.getContent());
+        user.changeType(userDTO.getType());
 
         userRepository.save(user);
     }

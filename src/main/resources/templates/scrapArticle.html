@@ -66,7 +66,12 @@
                 <div class="bs-component">
                     <div class="card mb-3">
                         <div class="card-header">
-                            <h4 class="titletext titletext2">[[${dto.title}]]<time>[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</time></h4>
+                            <span>
+                                <h4 class="titletext titletext2">
+                                    <span class="titletext3">[[${dto.title}]]</span>
+                                    <time>[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</time>
+                                </h4>
+                            </span>
                             <div class="language-select">
                                 <button class="btn btn-primary btn-sm korean">한국어</button>
                                 <button class="btn btn-primary btn-sm origin">원문</button>
@@ -185,12 +190,12 @@
         /*<![CDATA[*/
 
         $(".korean").click(function(){
-            $(".titletext2").text([[${dto.title}]]);
+            $(".titletext3").text([[${dto.title}]]);
             $(".content-section").text([[${dto.content}]]);
         });
 
         $(".origin").click(function(){
-            $(".titletext2").text([[${dto.originTitle}]]);
+            $(".titletext3").text([[${dto.originTitle}]]);
             $(".content-section").text([[${dto.originContent}]]);
         });
 

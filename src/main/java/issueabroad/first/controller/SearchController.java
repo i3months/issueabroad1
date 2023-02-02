@@ -29,16 +29,4 @@ public class SearchController {
 
         return "search/searchResult";
     }
-//    @GetMapping("/search/{keyword}")
-//    public String search(@PathVariable("keyword") String keyword, PageRequestDTO pageRequestDTO, Model model) {
-//        pageRequestDTO.setType("to");
-//        pageRequestDTO.setKeyword(keyword); // 키워드 지정해줘야됨
-//
-////        model.addAttribute("result", crawlService.getList(pageRequestDTO));
-//        model.addAttribute("title", keyword);
-//        model.addAttribute("url", "crawl");
-//        model.addAttribute("paging", "search/" + keyword );
-//
-//        return "search/searchResult";
-//    }
 }

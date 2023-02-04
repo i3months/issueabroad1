@@ -1,6 +1,7 @@
 package issueabroad.first.service;
 
 import issueabroad.first.dto.ScrapReplyDTO;
+import issueabroad.first.entity.article.Scrap;
 import issueabroad.first.entity.reply.ScrapReply;
 import issueabroad.first.repository.ScrapReplyRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,5 +30,34 @@ public class ScrapReplyServiceImpl implements ScrapReplyService {
         return res2;
 
 
+    }
+
+    @Override
+    public List<ScrapReplyDTO> getList(Long sno) {
+        List<ScrapReply> res = scrapReplyRepository.getRepliesByScrapOrderBySrno(Scrap.builder().sno(sno).build());
+
+        return res.stream().map(scrapReply -> entityToDTO(scrapReply)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void modify(ScrapReplyDTO scrapReplyDTO) {
+        ScrapReply scrapReply = dtoToEntity(scrapReplyDTO);
+
+        scrapReplyRepository.save(scrapReply);
+    }
+
+    @Override
+    public void remove(Long sno) {
+        scrapReplyRepository.deleteById(sno);
+        return;
+    }
+
+    @Override
+    public Long register(ScrapReplyDTO scrapReplyDTO) {
+        ScrapReply scrapReply = dtoToEntity(scrapReplyDTO);
+
+        scrapReplyRepository.save(scrapReply);
+
+        return scrapReply.getSrno();
     }
 }

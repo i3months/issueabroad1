@@ -1,6 +1,7 @@
 package issueabroad.first.service;
 
 import issueabroad.first.dto.UserReplyDTO;
+import issueabroad.first.entity.article.User;
 import issueabroad.first.entity.reply.UserReply;
 import issueabroad.first.repository.UserReplyRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ public class UserReplyServiceImpl implements UserReplyService{
 
     private final UserReplyRepository userReplyRepository;
 
+
     @Override
     public List<UserReplyDTO> getAllReplyByUno(Long uno) {
         Function<Object[], UserReplyDTO> fn = (en -> entityToDTO((UserReply)en[0]));
@@ -26,5 +28,34 @@ public class UserReplyServiceImpl implements UserReplyService{
         List<UserReplyDTO> res2 = res1.stream().map(fn).collect(Collectors.toList());
 
         return res2;
+    }
+
+    @Override
+    public List<UserReplyDTO> getList(Long uno) {
+        List<UserReply> res = userReplyRepository.getRepliesByUserOrderByUrno(User.builder().uno(uno).build());
+
+        return res.stream().map(userReply -> entityToDTO(userReply)).collect(Collectors.toList());
+    }
+
+    @Override
+    public void modify(UserReplyDTO userReplyDTO) {
+        UserReply userReply = dtoToEntity(userReplyDTO);
+
+        userReplyRepository.save(userReply);
+    }
+
+    @Override
+    public void remove(Long uno) {
+        userReplyRepository.deleteById(uno);
+        return;
+    }
+
+    @Override
+    public Long register(UserReplyDTO userReplyDTO) {
+        UserReply userReply = dtoToEntity(userReplyDTO);
+
+        userReplyRepository.save(userReply);
+
+        return userReply.getUrno();
     }
 }

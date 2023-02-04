@@ -50,7 +50,7 @@ public class ArticleController {
         userService.updateViewCount(uno);
 
         model.addAttribute("dto", dto);
-        model.addAttribute("dtoReply", userReplyService.getAllReplyByUno(uno));
+        model.addAttribute("dtoReply", userReplyService.getList(uno));
 
 
         return "userArticle";
@@ -92,7 +92,7 @@ public class ArticleController {
         scrapService.updateViewCount(sno);
 
         model.addAttribute("dto", dto);
-        model.addAttribute("dtoReply", scrapReplyService.getAllReplyBySno(sno));
+        model.addAttribute("dtoReply", scrapReplyService.getList(sno));
 
         return "scrapArticle";
     }

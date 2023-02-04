@@ -18,4 +18,6 @@ public class UserReplyDTO {
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+
+    private Long uno;
 }

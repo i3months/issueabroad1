@@ -91,7 +91,7 @@
                             </span>           
                             <span>
                                 <span>댓글 수</span>
-                                <span class="badge bg-primary rounded-pill comment">[[${dto.replyCount}]]</span>
+                                <span class="badge bg-primary rounded-pill comment replyCount">[[${dto.replyCount}]]</span>
                             </span>
                             <span>
                                 <a th:href="@{{url}(url = ${dto.url})}" class="website-link">[[${dto.url}]]</a>
@@ -169,16 +169,50 @@
     <script th:inline="javascript">
         /*<![CDATA[*/
 
-        $(".korean").click(function(){
-            $(".titletext3").text([[${dto.title}]]);
-            $(".content-section").text([[${dto.content}]]);
-        });
+        $(document).ready(function(){
+            $(".korean").click(function(){
+                $(".titletext3").text([[${dto.title}]]);
+                $(".content-section").text([[${dto.content}]]);
+            });
 
-        $(".origin").click(function(){
-            $(".titletext3").text([[${dto.originTitle}]]);
-            $(".content-section").text([[${dto.originContent}]]);
-        });
+            $(".origin").click(function(){
+                $(".titletext3").text([[${dto.originTitle}]]);
+                $(".content-section").text([[${dto.originContent}]]);
+            });
 
+            let sno = [[${dto.sno}}]];
+
+            let replySection = $(".list-group-flush");
+
+            function formatTime(str) {
+                let date = new Date(str);
+                return (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+            }
+
+            function loadReplyJSONData() {
+                $.getJSON('/replies/scrap/' + sno, function(arr) {
+                    let str = "";
+
+                    $('.replyCount').html(arr.length);
+
+                    $.each(arr, function(idx, reply) {
+                       str += '<li class="list-group-item">';
+
+                       str += '<div class="titletext">' + reply.replyer + '</div>';
+                       str += '<div class="commenttext">' + reply.text + '</div>';
+                       str += '<div class="commentinfo">' + formatTime(reply.regDate) + '</div>'
+
+                       str += '</li>';
+
+                    });
+
+                    replySection.html(str);
+
+                });
+            }
+
+
+        });
 
         /*]]>*/
 

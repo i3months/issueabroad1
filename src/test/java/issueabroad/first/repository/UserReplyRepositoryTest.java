@@ -49,4 +49,13 @@ class UserReplyRepositoryTest {
         }
     }
 
+    @Test
+    public void testReadReply2() {
+        List<UserReply> res = userReplyRepository.getRepliesByUserOrderByUrno(
+                User.builder().uno(197l).build()
+        );
+
+        res.forEach(k -> System.out.println(k));
+    }
+
 }

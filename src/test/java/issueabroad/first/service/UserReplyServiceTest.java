@@ -28,4 +28,16 @@ class UserReplyServiceTest {
         }
     }
 
+    @Test
+    public void testReadReplies2() {
+        int idx = 1;
+
+        List<UserReplyDTO> res = userReplyService.getList(197l);
+
+        for(UserReplyDTO k : res) {
+            System.out.println(idx + " : " + k);
+            idx++;
+        }
+    }
+
 }

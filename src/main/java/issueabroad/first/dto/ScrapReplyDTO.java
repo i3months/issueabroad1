@@ -18,4 +18,6 @@ public class ScrapReplyDTO {
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;
+
+    private Long sno;
 }

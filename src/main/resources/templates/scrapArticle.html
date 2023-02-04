@@ -107,6 +107,7 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li th:each="dto : ${dtoReply}" class="list-group-item">
+                                <div class="commentcontrol">삭제</div>
                                 <div class="titletext">[[${dto.replyer}]]</div>
                                 <div class="commenttext">[[${dto.text}]]</div>
                                 <div class="commentinfo">[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</div>

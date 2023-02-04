@@ -184,6 +184,15 @@ time {
     display:inline;
 }
 
+.commentcontrol {
+    cursor:pointer;
+    float:right;
+    color: #a6a6a6;
+    font-size: 11px;
+    letter-spacing: 0;
+    line-height: 18px;
+}
+
 .commentbutton {
     height:40px;
     width:60px;

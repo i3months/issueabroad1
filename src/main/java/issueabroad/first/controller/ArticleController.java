@@ -3,6 +3,7 @@ package issueabroad.first.controller;
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.ScrapDTO;
 import issueabroad.first.dto.UserDTO;
+import issueabroad.first.service.ScrapReplyService;
 import issueabroad.first.service.ScrapService;
 import issueabroad.first.service.UserReplyService;
 import issueabroad.first.service.UserService;
@@ -24,6 +25,7 @@ public class ArticleController {
     private final UserService userService;
     private final ScrapService scrapService;
     private final UserReplyService userReplyService;
+    private final ScrapReplyService scrapReplyService;
 
     @GetMapping("/register")
     public String registerArticle() {
@@ -88,7 +90,9 @@ public class ArticleController {
     public String readScrap(@PathVariable("sno") Long sno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         ScrapDTO dto = scrapService.get(sno);
         scrapService.updateViewCount(sno);
+
         model.addAttribute("dto", dto);
+        model.addAttribute("dtoReply", scrapReplyService.getAllReplyBySno(sno));
 
         return "scrapArticle";
     }

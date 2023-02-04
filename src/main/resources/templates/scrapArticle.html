@@ -117,13 +117,13 @@
 
                 <div class="card commentsection">
                     <form class="card-body d-flex">
-                        <input type="text" class="form-control commentinput" placeholder="댓글을 작성하세요." id="inputDefault">
-                        <input type="text" class="form-control commentinput" placeholder="작성자명을 작성하세요.">
+                        <input type="text" class="form-control commentinput" placeholder="댓글을 작성하세요." name="replyText">
+                        <input type="text" class="form-control commentinput" placeholder="작성자명을 작성하세요." name="replyer">
                         <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
                             <input type="checkbox" class="btn-check" id="btncheck1" checked="" autocomplete="on">
 <!--                            <label class="btn btn-primary anonycheck" for="btncheck1">익명</label>-->
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm commentbutton"><i class="bi bi-pencil"></i></button>
+                        <button type="button" class="btn btn-primary btn-sm commentbutton"><i class="bi bi-pencil"></i></button>
                     </form>
                 </div>
             </div>
@@ -188,7 +188,18 @@
 
             function formatTime(str) {
                 let date = new Date(str);
-                return (date.getMonth() + 1) + '/' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes();
+
+                let month = date.getMonth() + 1;
+                let day = date.getDate();
+                let hour = date.getHours();
+                let minute = date.getMinutes();
+
+                if(parseInt(month) < 10) month = "0" + month;
+                if(parseInt(day) < 10) day = "0" + day;
+                if(parseInt(hour) < 10) hour = "0" + hour;
+                if(parseInt(minute) < 10) minute = "0" + minute;
+
+                return month + '/' + day + ' ' + hour + ':' + minute;
             }
 
             function loadReplyJSONData() {
@@ -212,6 +223,33 @@
 
                 });
             }
+
+            $(".commentbutton").click(function() {
+
+                let reply = {
+                    sno: sno,
+                    text: $('input[name="replyText"]').val(),
+                    replyer: $('input[name="replyer"]').val()
+                }
+
+                $.ajax({
+                    url: '/replies/scrap/register',
+                    method: 'post',
+                    data: JSON.stringify(reply),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function(data) {
+                        console.log(data);
+
+                        alert("댓글을 등록했습니다.");
+
+                        $('input[name="replyText"]').val('');
+                        $('input[name="replyer"]').val('');
+
+                        loadReplyJSONData();
+                    }
+                });
+            })
 
 
         });

@@ -172,6 +172,11 @@ time {
     letter-spacing: 0;
 }
 
+.replyNum {
+    display:none;
+
+}
+
 /* .option {
     position: absolute;
     right: 0;

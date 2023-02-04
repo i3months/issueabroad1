@@ -50,5 +50,12 @@ public class ReplyController {
         return new ResponseEntity<>(urno, HttpStatus.OK);
     }
 
+    @DeleteMapping("/scrap/{srno}")
+    public ResponseEntity<String> scrapRemove(@PathVariable("srno") Long srno) {
+        scrapReplyService.remove(srno);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
+
 
 }

@@ -97,30 +97,10 @@
                 <div class="card commentsection">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="titletext">익명 또는 아이디가 표시됨</div>
-                                <div class="commenttext">댓글 내용1 ~~~~~~~~~</div>
-                                <div class="commentinfo">11/05 17:33</div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="titletext">익명 또는 아이디가 표시됨</div>
-                                <div class="commenttext">댓글 내용2 ~~~~~~~~~</div>
-                                <div class="commentinfo">11/05 17:33</div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="titletext">익명 또는 아이디가 표시됨</div>
-                                <div class="commenttext">댓글 내용3 ~~~~~~~~~</div>
-                                <div class="commentinfo">11/05 17:33</div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="titletext">익명 또는 아이디가 표시됨</div>
-                                <div class="commenttext">댓글 내용4 ~~~~~~~~~</div>
-                                <div class="commentinfo">11/05 17:33</div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="titletext">익명 또는 아이디가 표시됨</div>
-                                <div class="commenttext">댓글 내용5 ~~~~~~~~~</div>
-                                <div class="commentinfo">11/05 17:33</div>
+                            <li th:each="dto : ${dtoReply}" class="list-group-item">
+                                <div class="titletext">[[${dto.replyer}]]</div>
+                                <div class="commenttext">[[${dto.text}]]</div>
+                                <div class="commentinfo">[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</div>
                             </li>
                         </ul>
                     </div>

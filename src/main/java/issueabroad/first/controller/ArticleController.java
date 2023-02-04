@@ -4,6 +4,7 @@ import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.ScrapDTO;
 import issueabroad.first.dto.UserDTO;
 import issueabroad.first.service.ScrapService;
+import issueabroad.first.service.UserReplyService;
 import issueabroad.first.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,7 @@ public class ArticleController {
 
     private final UserService userService;
     private final ScrapService scrapService;
+    private final UserReplyService userReplyService;
 
     @GetMapping("/register")
     public String registerArticle() {
@@ -46,6 +48,8 @@ public class ArticleController {
         userService.updateViewCount(uno);
 
         model.addAttribute("dto", dto);
+        model.addAttribute("dtoReply", userReplyService.getAllReplyByUno(uno));
+
 
         return "userArticle";
     }

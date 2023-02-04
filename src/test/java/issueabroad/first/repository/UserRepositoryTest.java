@@ -55,7 +55,7 @@ class UserRepositoryTest {
 
     @Test
     public void testWithReply() {
-        List<Object[]> res = userRepository.getUserWithReply(2l);
+        List<Object[]> res = userRepository.getUserWithReply(198l);
 
         for(Object[] k : res) {
             System.out.println(Arrays.toString(k));

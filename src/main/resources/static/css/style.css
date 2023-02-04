@@ -221,3 +221,7 @@ time {
 .language-select {
     /*margin-top:10px;*/
 }
+
+.commentinput {
+    margin-left:5px;
+}

@@ -99,6 +99,7 @@
                         <ul class="list-group list-group-flush">
                             <li th:each="dto : ${dtoReply}" class="list-group-item">
                                 <div class="commentcontrol">삭제</div>
+                                <div class="replyNum">[[${dto.urno}]]</div>
                                 <div class="titletext">[[${dto.replyer}]]</div>
                                 <div class="commenttext">[[${dto.text}]]</div>
                                 <div class="commentinfo">[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</div>
@@ -195,6 +196,8 @@
                     $.each(arr, function(idx, reply) {
                         str += '<li class="list-group-item">';
 
+                        str += '<div class="commentcontrol">' + "삭제" + '</div>';
+                        str += '<div class="replyNum">' + reply.urno + '</div>';
                         str += '<div class="titletext">' + reply.replyer + '</div>';
                         str += '<div class="commenttext">' + reply.text + '</div>';
                         str += '<div class="commentinfo">' + formatTime(reply.regDate) + '</div>'
@@ -204,6 +207,27 @@
                     });
 
                     replySection.html(str);
+
+                    $(".commentcontrol").click(function() {
+
+                        if(!confirm("댓글을 삭제하시겠습니까?")) {
+                            return;
+                        }
+
+                        let urno = $(this).next().text();
+
+                        $.ajax({
+                            url: '/replies/user/' + urno,
+                            method: 'delete',
+                            success: function(res) {
+                                console.log("result : " + res);
+                                if(res === 'success') {
+                                    alert("댓글이 삭제되었습니다.");
+                                    loadReplyJSONData();
+                                }
+                            }
+                        })
+                    });
 
                 });
             }
@@ -233,7 +257,28 @@
                         loadReplyJSONData();
                     }
                 });
-            })
+            });
+
+            $(".commentcontrol").click(function() {
+
+                if(!confirm("댓글을 삭제하시겠습니까?")) {
+                    return;
+                }
+
+                let urno = $(this).next().text();
+
+                $.ajax({
+                    url: '/replies/user/' + urno,
+                    method: 'delete',
+                    success: function(res) {
+                        console.log("result : " + res);
+                        if(res === 'success') {
+                            alert("댓글이 삭제되었습니다.");
+                            loadReplyJSONData();
+                        }
+                    }
+                })
+            });
 
 
         });

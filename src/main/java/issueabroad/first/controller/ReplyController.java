@@ -57,5 +57,11 @@ public class ReplyController {
         return new ResponseEntity<>("success", HttpStatus.OK);
     }
 
+    @DeleteMapping("/user/{urno}")
+    public ResponseEntity<String> userRemove(@PathVariable("urno") Long urno) {
+        userReplyService.remove(urno);
+
+        return new ResponseEntity<>("success", HttpStatus.OK);
+    }
 
 }

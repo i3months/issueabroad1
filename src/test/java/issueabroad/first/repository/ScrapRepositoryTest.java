@@ -129,6 +129,23 @@ class ScrapRepositoryTest {
 
 
     @Test
+
+    public void insertScrapAmericaOne() {
+        Scrap scrap = Scrap.builder()
+                .originTitle("(미국)원문dd 제목입니다..")
+                .originContent("(미국)원문dd 내용입니다..")
+                .title("(미국)번역된dd 제목입니다..")
+                .content("(미국)번역된dd 내용입니다..")
+                .type("미국")
+                .webSite("스크랩dd 해 온 웹사이트 이름입니다..")
+                .viewCount((long)3)
+                .url("스크랩 한 게시물로dd 이동할 수 있는 링크입니다..")
+                .build();
+
+        scrapRepository.save(scrap);
+
+    }
+    @Test
     public void insertScrapAmerica() {
         IntStream.rangeClosed(1, 100).forEach(i -> {
             Scrap scrap = Scrap.builder()

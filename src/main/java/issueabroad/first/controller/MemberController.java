@@ -1,25 +1,23 @@
-//package issueabroad.first.controller;
-//
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Controller;
-//import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PostMapping;
-//
-//@Controller
-//@RequiredArgsConstructor
-//public class MemberController {
-//
-//    private final MemberService memberService;
-//
-//    @GetMapping("/members/new")
-//    public String createForm(Model model) {
+package issueabroad.first.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+@Controller
+@RequiredArgsConstructor
+public class MemberController {
+
+    @GetMapping("/members/new")
+    public String createForm(Model model) {
 //        model.addAttribute("memberForm", new MemberForm());
-//
-//        return "members/createMemberForm";
-//    }
-//
+
+        return "members/createMemberForm";
+    }
+
 //    @PostMapping("/members/new")
 //    public String create(MemberForm form, BindingResult result) { // Valid
 //        // @Valid 애너테이션을 사용하면 MemberForm 의 NotEmpty 등에 대해 Validation을 진행 해 준다.
@@ -40,22 +38,22 @@
 //        return "redirect:/"; // 저장 된 후 다시 재로딩을 방지해야 한다. 리다이렉트를 사용함
 //
 //    }
-//
-//    @GetMapping("/members/find")
-//    public String findHome() { // model 으로
-//
-//        return "members/findHome";
-//    }
-//
-//    @GetMapping("/members/findId")
-//    public String fingId() {
-//
-//        return "members/findId";
-//    }
-//
-//    @GetMapping("/members/findPassword")
-//    public String findPassword() {
-//
-//        return "members/findPassword";
-//    }
-//}
+
+    @GetMapping("/members/find")
+    public String findHome() { // model 으로
+
+        return "members/findHome";
+    }
+
+    @GetMapping("/members/findId")
+    public String fingId() {
+
+        return "members/findId";
+    }
+
+    @GetMapping("/members/findPassword")
+    public String findPassword() {
+
+        return "members/findPassword";
+    }
+}

@@ -1,7 +1,7 @@
 package issueabroad.first.entity.reply;
 
 import issueabroad.first.entity.article.BaseTimeEntity;
-import issueabroad.first.entity.article.User;
+import issueabroad.first.entity.article.WebUser;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @ToString(exclude = "user")
-public class UserReply extends BaseTimeEntity {
+public class WebUserReply extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class UserReply extends BaseTimeEntity {
     private String replyer;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private User user;
+    private WebUser webUser;
 
 
 }

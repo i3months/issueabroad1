@@ -4,12 +4,12 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.PageResultDTO;
-import issueabroad.first.dto.UserDTO;
-import issueabroad.first.entity.article.QUser;
-import issueabroad.first.entity.article.User;
+import issueabroad.first.dto.WebUserDTO;
+import issueabroad.first.entity.article.QWebUser;
+import issueabroad.first.entity.article.WebUser;
 import issueabroad.first.entity.member.Member;
-import issueabroad.first.repository.UserReplyRepository;
-import issueabroad.first.repository.UserRepository;
+import issueabroad.first.repository.WebUserReplyRepository;
+import issueabroad.first.repository.WebUserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -22,28 +22,28 @@ import java.util.function.Function;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class UserServiceImpl implements UserService{
+public class WebUserServiceImpl implements WebUserService {
 
-    private final UserRepository userRepository;
-    private final UserReplyRepository replyRepository;
+    private final WebUserRepository webUserRepository;
+    private final WebUserReplyRepository replyRepository;
 
     @Override
-    public Long register(UserDTO dto) {
+    public Long register(WebUserDTO dto) {
         log.info(dto);
 
-        User user = dtoToEntity(dto);
-        userRepository.save(user);
+        WebUser webUser = dtoToEntity(dto);
+        webUserRepository.save(webUser);
 
-        return user.getUno();
+        return webUser.getUno();
     }
 
     @Override
-    public PageResultDTO<UserDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<WebUserDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = userRepository.getUserWithReplyCount(
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCount(
                 pageRequestDTO.getPageable(Sort.by("uno").descending()));
 
 
@@ -51,12 +51,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public PageResultDTO<UserDTO, Object[]> getListMain(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<WebUserDTO, Object[]> getListMain(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = userRepository.getUserWithReplyCount(
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCount(
                 pageRequestDTO.getPageableMain(Sort.by("uno").descending()));
 
         return new PageResultDTO<>(res, fn);
@@ -64,12 +64,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public PageResultDTO<UserDTO, Object[]> getListSuggest(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<WebUserDTO, Object[]> getListSuggest(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = userRepository.getUserWithReplyCountType("건의",
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCountType("건의",
                 pageRequestDTO.getPageable(Sort.by("uno").descending()));
 
 
@@ -78,12 +78,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public PageResultDTO<UserDTO, Object[]> getListMainSuggest(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<WebUserDTO, Object[]> getListMainSuggest(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = userRepository.getUserWithReplyCountType("건의",
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCountType("건의",
                 pageRequestDTO.getPageableMain(Sort.by("uno").descending()));
 
 
@@ -91,12 +91,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public PageResultDTO<UserDTO, Object[]> getListFree(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<WebUserDTO, Object[]> getListFree(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = userRepository.getUserWithReplyCountType("자유",
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCountType("자유",
                 pageRequestDTO.getPageable(Sort.by("uno").descending()));
 
 
@@ -104,12 +104,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public PageResultDTO<UserDTO, Object[]> getListMainFree(PageRequestDTO pageRequestDTO) {
+    public PageResultDTO<WebUserDTO, Object[]> getListMainFree(PageRequestDTO pageRequestDTO) {
         log.info(pageRequestDTO);
 
-        Function<Object[], UserDTO> fn = (en -> entityToDTO((User)en[0], (Member)en[1], (Long)en[2]));
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
 
-        Page<Object[]> res = userRepository.getUserWithReplyCountType("자유",
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCountType("자유",
                 pageRequestDTO.getPageableMain(Sort.by("uno").descending()));
 
 
@@ -118,7 +118,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public int updateViewCount(Long uno) {
-        return userRepository.updateViewCount(uno);
+        return webUserRepository.updateViewCount(uno);
     }
 
 
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService{
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 
-        QUser qUser = QUser.user;
+        QWebUser qUser = QWebUser.webUser;
 
         String keyword = requestDTO.getKeyword();
 
@@ -153,32 +153,32 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserDTO get(Long uno) {
-        Object res = userRepository.getUserByUno(uno);
+    public WebUserDTO get(Long uno) {
+        Object res = webUserRepository.getWebUserByUno(uno);
         Object[] arr = (Object[])res;
 
-        return entityToDTO((User)arr[0], (Member)arr[1], (Long)arr[2]);
+        return entityToDTO((WebUser)arr[0], (Member)arr[1], (Long)arr[2]);
     }
 
     @Override
     @Transactional
     public void removeWithReplies(Long uno) {
         replyRepository.deleteByUno(uno);
-        userRepository.deleteById(uno);
+        webUserRepository.deleteById(uno);
     }
 
     @Override
     @Transactional
-    public void modify(UserDTO userDTO) {
+    public void modify(WebUserDTO webUserDTO) {
         /**
          * 로딩 지연을 위해 getOne 사용
          */
-        User user = userRepository.getOne(userDTO.getUno());
+        WebUser webUser = webUserRepository.getOne(webUserDTO.getUno());
 
-        user.changeTitle(userDTO.getTitle());
-        user.changeContent(userDTO.getContent());
-        user.changeType(userDTO.getType());
+        webUser.changeTitle(webUserDTO.getTitle());
+        webUser.changeContent(webUserDTO.getContent());
+        webUser.changeType(webUserDTO.getType());
 
-        userRepository.save(user);
+        webUserRepository.save(webUser);
     }
 }

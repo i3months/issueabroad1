@@ -2,38 +2,38 @@ package issueabroad.first.service;
 
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.PageResultDTO;
-import issueabroad.first.dto.UserDTO;
+import issueabroad.first.dto.WebUserDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceTest {
+class WebUserServiceTest {
 
     @Autowired
-    private UserService userService;
+    private WebUserService webUserService;
 
     @Test
     public void testRegister() {
-        UserDTO dto = UserDTO.builder()
+        WebUserDTO dto = WebUserDTO.builder()
                 .title("TestTitle...")
                 .content("TestContent...")
                 .writerEmail("tempuser100@naver.com")
                 .build();
 
-        Long uno = userService.register(dto);
+        Long uno = webUserService.register(dto);
     }
 
     @Test
     public void testGetList() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getList(pageRequestDTO);
+        PageResultDTO<WebUserDTO, Object[]> res = webUserService.getList(pageRequestDTO);
 
         int idx = 1;
 
         System.out.println("---");
-        for(UserDTO k : res.getDtoList()) {
+        for(WebUserDTO k : res.getDtoList()) {
             System.out.println(idx + " : " + k); idx++;
         }
         System.out.println("---");
@@ -43,39 +43,39 @@ class UserServiceTest {
     public void testGetOne() {
         Long uno = 2l;
 
-        UserDTO userDTO = userService.get(uno);
+        WebUserDTO webUserDTO = webUserService.get(uno);
 
         System.out.println("---");
-        System.out.println(userDTO);
+        System.out.println(webUserDTO);
         System.out.println("---");
     }
 
     @Test
     public void testDeleteWithReplies() {
         Long uno = 1l;
-        userService.removeWithReplies(uno);
+        webUserService.removeWithReplies(uno);
     }
 
     @Test
     public void testModify() {
-        UserDTO userDTO = UserDTO.builder()
+        WebUserDTO webUserDTO = WebUserDTO.builder()
                 .uno(2l)
                 .title("변경된 제목입니다...")
                 .content("변경된 내용입니다...")
                 .build();
 
-        userService.modify(userDTO);
+        webUserService.modify(webUserDTO);
     }
 
     @Test
     public void testPageableMain() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getListMain(pageRequestDTO);
+        PageResultDTO<WebUserDTO, Object[]> res = webUserService.getListMain(pageRequestDTO);
 
         int idx = 1;
         System.out.println("---");
-        for(UserDTO k : res.getDtoList()) {
+        for(WebUserDTO k : res.getDtoList()) {
             System.out.println(idx + " : " +k);
             idx++;
         }
@@ -86,11 +86,11 @@ class UserServiceTest {
     public void testPageableSuggestMain() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getListMainSuggest(pageRequestDTO);
+        PageResultDTO<WebUserDTO, Object[]> res = webUserService.getListMainSuggest(pageRequestDTO);
 
         int idx = 1;
         System.out.println("---");
-        for(UserDTO k : res.getDtoList()) {
+        for(WebUserDTO k : res.getDtoList()) {
             System.out.println(idx + " : " +k);
             idx++;
         }
@@ -101,11 +101,11 @@ class UserServiceTest {
     public void testPageableSuggest() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getListSuggest(pageRequestDTO);
+        PageResultDTO<WebUserDTO, Object[]> res = webUserService.getListSuggest(pageRequestDTO);
 
         int idx = 1;
         System.out.println("---");
-        for(UserDTO k : res.getDtoList()) {
+        for(WebUserDTO k : res.getDtoList()) {
             System.out.println(idx + " : " +k);
             idx++;
         }
@@ -116,11 +116,11 @@ class UserServiceTest {
     public void testPageableFree() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getListFree(pageRequestDTO);
+        PageResultDTO<WebUserDTO, Object[]> res = webUserService.getListFree(pageRequestDTO);
 
         int idx = 1;
         System.out.println("---");
-        for(UserDTO k : res.getDtoList()) {
+        for(WebUserDTO k : res.getDtoList()) {
             System.out.println(idx + " : " +k);
             idx++;
         }
@@ -131,11 +131,11 @@ class UserServiceTest {
     public void testPageableMainFree() {
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<UserDTO, Object[]> res = userService.getListMainFree(pageRequestDTO);
+        PageResultDTO<WebUserDTO, Object[]> res = webUserService.getListMainFree(pageRequestDTO);
 
         int idx = 1;
         System.out.println("---");
-        for(UserDTO k : res.getDtoList()) {
+        for(WebUserDTO k : res.getDtoList()) {
             System.out.println(idx + " : " +k);
             idx++;
         }
@@ -145,10 +145,10 @@ class UserServiceTest {
     @Test
     public void testViewCount() {
 
-        UserDTO dto1 = userService.get(310l);
+        WebUserDTO dto1 = webUserService.get(310l);
         System.out.println("Before : " + dto1.getViewCount());
-        userService.updateViewCount(310l);
-        dto1 = userService.get(310l);
+        webUserService.updateViewCount(310l);
+        dto1 = webUserService.get(310l);
         System.out.println("Afteer : " + dto1.getViewCount());
     }
 }

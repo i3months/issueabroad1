@@ -3,9 +3,7 @@ package issueabroad.first.service;
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.PageResultDTO;
 import issueabroad.first.dto.ScrapDTO;
-import issueabroad.first.dto.UserDTO;
 import issueabroad.first.entity.article.Scrap;
-import issueabroad.first.entity.member.Member;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface ScrapService {

@@ -2,11 +2,11 @@ package issueabroad.first.controller;
 
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.ScrapDTO;
-import issueabroad.first.dto.UserDTO;
+import issueabroad.first.dto.WebUserDTO;
 import issueabroad.first.service.ScrapReplyService;
 import issueabroad.first.service.ScrapService;
-import issueabroad.first.service.UserReplyService;
-import issueabroad.first.service.UserService;
+import issueabroad.first.service.WebUserReplyService;
+import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,9 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Slf4j
 public class ArticleController {
 
-    private final UserService userService;
+    private final WebUserService webUserService;
     private final ScrapService scrapService;
-    private final UserReplyService userReplyService;
+    private final WebUserReplyService webUserReplyService;
     private final ScrapReplyService scrapReplyService;
 
     @GetMapping("/register")
@@ -35,22 +35,22 @@ public class ArticleController {
     }
 
     @PostMapping("/register")
-    public String registerPost(UserDTO dto, RedirectAttributes redirectAttributes) {
+    public String registerPost(WebUserDTO dto, RedirectAttributes redirectAttributes) {
         dto.setViewCount(0l);
         log.info("New article.." + dto);
 
-        Long uno = userService.register(dto);
+        Long uno = webUserService.register(dto);
 
         return "redirect:/";
     }
 
     @GetMapping("/user/read/{uno}")
     public String readUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
-        UserDTO dto = userService.get(uno);
-        userService.updateViewCount(uno);
+        WebUserDTO dto = webUserService.get(uno);
+        webUserService.updateViewCount(uno);
 
         model.addAttribute("dto", dto);
-        model.addAttribute("dtoReply", userReplyService.getList(uno));
+        model.addAttribute("dtoReply", webUserReplyService.getList(uno));
 
 
         return "userArticle";
@@ -58,8 +58,8 @@ public class ArticleController {
 
 
     @PostMapping("/user/modify/{uno}")
-    public String modifyUser(@PathVariable("uno") Long uno, UserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
-        userService.modify(dto);
+    public String modifyUser(@PathVariable("uno") Long uno, WebUserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
+        webUserService.modify(dto);
 
         System.out.println("0-------------0");
         System.out.println(uno);
@@ -70,7 +70,7 @@ public class ArticleController {
 
     @GetMapping("/user/modify/{uno}")
     public String modifyUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
-        UserDTO dto = userService.get(uno);
+        WebUserDTO dto = webUserService.get(uno);
 
         model.addAttribute("dto", dto);
 
@@ -79,7 +79,7 @@ public class ArticleController {
 
     @PostMapping("/user/remove/{uno}")
     public String removeUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
-        userService.removeWithReplies(uno);
+        webUserService.removeWithReplies(uno);
 
         return "redirect:/";
     }

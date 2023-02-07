@@ -3,13 +3,12 @@ package issueabroad.first.controller;
 import issueabroad.first.dto.ScrapReplyDTO;
 import issueabroad.first.dto.UserReplyDTO;
 import issueabroad.first.service.ScrapReplyService;
-import issueabroad.first.service.UserReplyService;
+import issueabroad.first.service.WebUserReplyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,13 +19,13 @@ import java.util.List;
 @RequestMapping("/replies/")
 public class ReplyController {
 
-    private final UserReplyService userReplyService;
+    private final WebUserReplyService webUserReplyService;
     private final ScrapReplyService scrapReplyService;
 
     @GetMapping(value = "/user/{uno}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<UserReplyDTO>> getListByUserBoard(@PathVariable("uno") Long uno) {
 
-        return new ResponseEntity<>(userReplyService.getList(uno), HttpStatus.OK);
+        return new ResponseEntity<>(webUserReplyService.getList(uno), HttpStatus.OK);
     }
 
     @GetMapping(value = "/scrap/{sno}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -45,7 +44,7 @@ public class ReplyController {
     @PostMapping("/user/register")
     public ResponseEntity<Long> userRegister(@RequestBody UserReplyDTO userReplyDTO) {
 
-        Long urno = userReplyService.register(userReplyDTO);
+        Long urno = webUserReplyService.register(userReplyDTO);
 
         return new ResponseEntity<>(urno, HttpStatus.OK);
     }
@@ -59,7 +58,7 @@ public class ReplyController {
 
     @DeleteMapping("/user/{urno}")
     public ResponseEntity<String> userRemove(@PathVariable("urno") Long urno) {
-        userReplyService.remove(urno);
+        webUserReplyService.remove(urno);
 
         return new ResponseEntity<>("success", HttpStatus.OK);
     }

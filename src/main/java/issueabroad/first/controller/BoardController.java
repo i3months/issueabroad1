@@ -2,7 +2,7 @@ package issueabroad.first.controller;
 
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.service.ScrapService;
-import issueabroad.first.service.UserService;
+import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Log4j2
 public class BoardController {
 
-    private final UserService userService;
+    private final WebUserService webUserService;
     private final ScrapService scrapService;
 
     @GetMapping("/all")
@@ -59,7 +59,7 @@ public class BoardController {
 
     @GetMapping("/free")
     public String free(PageRequestDTO pageRequestDTO, Model model) {
-        model.addAttribute("result", userService.getListFree(pageRequestDTO));
+        model.addAttribute("result", webUserService.getListFree(pageRequestDTO));
         model.addAttribute("title", "자유");
         model.addAttribute("url", "user");
         model.addAttribute("paging", "free");
@@ -69,7 +69,7 @@ public class BoardController {
 
     @GetMapping("/suggest")
     public String suggest(PageRequestDTO pageRequestDTO, Model model) {
-        model.addAttribute("result", userService.getListSuggest(pageRequestDTO));
+        model.addAttribute("result", webUserService.getListSuggest(pageRequestDTO));
         model.addAttribute("title", "건의");
         model.addAttribute("url", "user");
         model.addAttribute("paging", "suggest");

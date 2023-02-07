@@ -1,7 +1,7 @@
 package issueabroad.first.repository;
 
-import issueabroad.first.entity.article.User;
-import issueabroad.first.entity.reply.UserReply;
+import issueabroad.first.entity.article.WebUser;
+import issueabroad.first.entity.reply.WebUserReply;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,36 +10,34 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @SpringBootTest
-class UserReplyRepositoryTest {
+class WebUserReplyRepositoryTest {
 
     @Autowired
-    private UserReplyRepository userReplyRepository;
+    private WebUserReplyRepository webUserReplyRepository;
 
     @Test
-    public void insertUserReply() {
+    public void insertWebUserReply() {
         IntStream.rangeClosed(1, 1000).forEach(i -> {
             long uno = (long)(Math.random() * 200) + 1;
 
-            User user = User.builder()
+            WebUser webUser = WebUser.builder()
                     .uno(uno)
                     .build();
 
-            UserReply userReply = UserReply.builder()
+            WebUserReply webUserReply = WebUserReply.builder()
                     .text("UserReplyText...." + i)
-                    .user(user)
+                    .webUser(webUser)
                     .replyer("익명")
                     .build();
 
-            userReplyRepository.save(userReply);
+            webUserReplyRepository.save(webUserReply);
         });
     }
 
     @Test
     public void testReadReply() {
-        List<Object[]> res = userReplyRepository.getUserReplyByUno(198L);
+        List<Object[]> res = webUserReplyRepository.getWebUserReplyByUno(198L);
 
         int idx = 1;
 
@@ -51,8 +49,8 @@ class UserReplyRepositoryTest {
 
     @Test
     public void testReadReply2() {
-        List<UserReply> res = userReplyRepository.getRepliesByUserOrderByUrno(
-                User.builder().uno(197l).build()
+        List<WebUserReply> res = webUserReplyRepository.getRepliesByWebUserOrderByUrno(
+                WebUser.builder().uno(197l).build()
         );
 
         res.forEach(k -> System.out.println(k));

@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDTO {
+public class WebUserDTO {
 
     private Long uno;
 

@@ -2,7 +2,7 @@ package issueabroad.first.controller;
 
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.service.ScrapService;
-import issueabroad.first.service.UserService;
+import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     private final ScrapService scrapService;
-    private final UserService userService;
+    private final WebUserService webUserService;
 
     @GetMapping("/")
     public String home2(PageRequestDTO pageRequestDTO, Model model) {
@@ -31,8 +31,8 @@ public class HomeController {
         model.addAttribute("america", scrapService.getListMainAmerica(pageRequestDTO));
         model.addAttribute("japan", scrapService.getListMainJapan(pageRequestDTO));
 
-        model.addAttribute("free", userService.getListMainFree(pageRequestDTO));
-        model.addAttribute("suggest", userService.getListMainSuggest(pageRequestDTO));
+        model.addAttribute("free", webUserService.getListMainFree(pageRequestDTO));
+        model.addAttribute("suggest", webUserService.getListMainSuggest(pageRequestDTO));
 
 
         return "mainBeforeLogin";

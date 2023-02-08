@@ -26,6 +26,7 @@ public class WebUser extends BaseTimeEntity{
     private Long viewCount;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    private Member writer;
 
     public void changeTitle(String title) { this.title = title; }
     public void changeContent(String content) { this.content = content; }

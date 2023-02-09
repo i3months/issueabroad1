@@ -20,18 +20,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     /**
      * 아래 부분이 있으면 접근 제한 걸림!
      */
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        /**
-//         * 접근 제한을 설정할 수 있다 ...
-//         */
-//
-//        http.authorizeRequests()
-//                .antMatchers("/").hasRole("USER");
-//
-//        http.formLogin();
-//        http.csrf().disable();
-//        http.logout();
-//    }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        /**
+         * 접근 제한을 설정할 수 있다 ...
+         */
+
+        http.authorizeRequests()
+                .antMatchers("/").hasRole("USER");
+
+        http.formLogin();
+        http.csrf().disable();
+        http.logout();
+
+    }
 
 }

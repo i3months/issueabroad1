@@ -3,12 +3,14 @@ package issueabroad.first.controller;
 import issueabroad.first.dto.PageRequestDTO;
 import issueabroad.first.dto.ScrapDTO;
 import issueabroad.first.dto.WebUserDTO;
+import issueabroad.first.security.dto.AuthMemberDTO;
 import issueabroad.first.service.ScrapReplyService;
 import issueabroad.first.service.ScrapService;
 import issueabroad.first.service.WebUserReplyService;
 import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +37,10 @@ public class ArticleController {
     }
 
     @PostMapping("/register")
-    public String registerPost(WebUserDTO dto, RedirectAttributes redirectAttributes) {
+    public String registerPost(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, WebUserDTO dto, RedirectAttributes redirectAttributes) {
         dto.setViewCount(0l);
+        dto.setWriterEmail(authMemberDTO.getEmail());
+
         log.info("New article.." + dto);
 
         Long uno = webUserService.register(dto);

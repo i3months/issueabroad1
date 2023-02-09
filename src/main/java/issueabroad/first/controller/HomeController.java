@@ -1,10 +1,12 @@
 package issueabroad.first.controller;
 
 import issueabroad.first.dto.PageRequestDTO;
+import issueabroad.first.security.dto.AuthMemberDTO;
 import issueabroad.first.service.ScrapService;
 import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,8 +21,11 @@ public class HomeController {
     private final WebUserService webUserService;
 
     @GetMapping("/")
-    public String home2(PageRequestDTO pageRequestDTO, Model model) {
+    public String home(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, PageRequestDTO pageRequestDTO, Model model) {
         log.info("Home Controller called : " + pageRequestDTO);
+
+        model.addAttribute("memberEmail", authMemberDTO.getEmail());
+        model.addAttribute("memberName", authMemberDTO.getName());
 
         model.addAttribute("ScrapURL", "scrap");
         model.addAttribute("UserURL", "user");
@@ -35,7 +40,7 @@ public class HomeController {
         model.addAttribute("suggest", webUserService.getListMainSuggest(pageRequestDTO));
 
 
-        return "mainBeforeLogin";
+        return "main";
     }
 
     @GetMapping("/home")

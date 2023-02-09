@@ -2,6 +2,7 @@ package issueabroad.first.controller;
 
 import issueabroad.first.dto.ScrapReplyDTO;
 import issueabroad.first.dto.UserReplyDTO;
+import issueabroad.first.security.dto.AuthMemberDTO;
 import issueabroad.first.service.ScrapReplyService;
 import issueabroad.first.service.WebUserReplyService;
 import lombok.RequiredArgsConstructor;
@@ -9,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,14 +37,19 @@ public class ReplyController {
     }
 
     @PostMapping("/scrap/register")
-    public ResponseEntity<Long> scrapRegister(@RequestBody ScrapReplyDTO scrapReplyDTO) {
+    public ResponseEntity<Long> scrapRegister(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @RequestBody ScrapReplyDTO scrapReplyDTO) {
+
+        scrapReplyDTO.setReplyer(authMemberDTO.getName());
+
         Long srno = scrapReplyService.register(scrapReplyDTO);
 
         return new ResponseEntity<>(srno, HttpStatus.OK);
     }
 
     @PostMapping("/user/register")
-    public ResponseEntity<Long> userRegister(@RequestBody UserReplyDTO userReplyDTO) {
+    public ResponseEntity<Long> userRegister(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @RequestBody UserReplyDTO userReplyDTO) {
+
+        userReplyDTO.setReplyer(authMemberDTO.getName());
 
         Long urno = webUserReplyService.register(userReplyDTO);
 

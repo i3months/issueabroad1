@@ -29,7 +29,7 @@ class WebUserReplyServiceTest {
     public void testReadReplies2() {
         int idx = 1;
 
-        List<UserReplyDTO> res = webUserReplyService.getList(197l);
+        List<UserReplyDTO> res = webUserReplyService.getList(2l);
 
         for(UserReplyDTO k : res) {
             System.out.println(idx + " : " + k);

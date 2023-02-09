@@ -22,6 +22,8 @@ public class ScrapReply extends BaseTimeEntity {
     private String text;
     @Column(columnDefinition = "TEXT")
     private String replyer;
+    @Column(columnDefinition = "TEXT")
+    private String replyerEmail;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Scrap scrap;

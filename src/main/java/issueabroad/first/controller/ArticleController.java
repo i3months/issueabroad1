@@ -49,10 +49,11 @@ public class ArticleController {
     }
 
     @GetMapping("/user/read/{uno}")
-    public String readUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+    public String readUser(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         WebUserDTO dto = webUserService.get(uno);
         webUserService.updateViewCount(uno);
 
+        model.addAttribute("replyerEmail", authMemberDTO.getEmail());
         model.addAttribute("dto", dto);
         model.addAttribute("dtoReply", webUserReplyService.getList(uno));
 
@@ -91,10 +92,12 @@ public class ArticleController {
 
 
     @GetMapping("/scrap/read/{sno}")
-    public String readScrap(@PathVariable("sno") Long sno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+    public String readScrap(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @PathVariable("sno") Long sno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         ScrapDTO dto = scrapService.get(sno);
         scrapService.updateViewCount(sno);
 
+
+        model.addAttribute("replyerEmail", authMemberDTO.getEmail());
         model.addAttribute("dto", dto);
         model.addAttribute("dtoReply", scrapReplyService.getList(sno));
 

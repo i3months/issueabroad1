@@ -15,6 +15,7 @@ public class UserReplyDTO {
 
     private String text;
     private String replyer;
+    private String replyerEmail;
 
     private LocalDateTime regDate;
     private LocalDateTime modDate;

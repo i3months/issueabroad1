@@ -40,6 +40,7 @@ public class ReplyController {
     public ResponseEntity<Long> scrapRegister(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @RequestBody ScrapReplyDTO scrapReplyDTO) {
 
         scrapReplyDTO.setReplyer(authMemberDTO.getName());
+        scrapReplyDTO.setReplyerEmail(authMemberDTO.getEmail());
 
         Long srno = scrapReplyService.register(scrapReplyDTO);
 
@@ -50,6 +51,7 @@ public class ReplyController {
     public ResponseEntity<Long> userRegister(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @RequestBody UserReplyDTO userReplyDTO) {
 
         userReplyDTO.setReplyer(authMemberDTO.getName());
+        userReplyDTO.setReplyerEmail(authMemberDTO.getEmail());
 
         Long urno = webUserReplyService.register(userReplyDTO);
 

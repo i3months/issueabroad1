@@ -94,7 +94,7 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li th:each="dto : ${dtoReply}" class="list-group-item">
-                                <div class="commentcontrol">삭제</div>
+                                <div th:if="${dto.replyerEmail == replyerEmail}" class="commentcontrol">삭제</div>
                                 <div class="replyNum">[[${dto.urno}]]</div>
                                 <div class="titletext">[[${dto.replyer}]]</div>
                                 <div class="commenttext">[[${dto.text}]]</div>
@@ -163,6 +163,7 @@
         $(document).ready(function(){
 
             let uno = /*[[${dto.uno}]]*/;
+            let curEmail = /*[[${replyerEmail}]]*/;
 
             let replySection = $(".list-group-flush");
 
@@ -191,7 +192,7 @@
                     $.each(arr, function(idx, reply) {
                         str += '<li class="list-group-item">';
 
-                        str += '<div class="commentcontrol">' + "삭제" + '</div>';
+                        if(curEmail == reply.replyerEmail) str += '<div class="commentcontrol">' + "삭제" + '</div>';
                         str += '<div class="replyNum">' + reply.urno + '</div>';
                         str += '<div class="titletext">' + reply.replyer + '</div>';
                         str += '<div class="commenttext">' + reply.text + '</div>';
@@ -231,8 +232,7 @@
 
                 let reply = {
                     uno: uno,
-                    text: $('input[name="replyText"]').val(),
-                    replyer: $('input[name="replyer"]').val()
+                    text: $('input[name="replyText"]').val()
                 }
 
                 $.ajax({
@@ -247,7 +247,6 @@
                         alert("댓글을 등록했습니다.");
 
                         $('input[name="replyText"]').val('');
-                        $('input[name="replyer"]').val('');
 
                         loadReplyJSONData();
                     }

@@ -18,6 +18,7 @@ public interface WebUserReplyService {
         UserReplyDTO userReplyDTO = UserReplyDTO.builder()
                 .urno(webUserReply.getUrno())
                 .text(webUserReply.getText())
+                .replyerEmail(webUserReply.getReplyerEmail())
                 .replyer(webUserReply.getReplyer())
                 .modDate(webUserReply.getModDate())
                 .regDate(webUserReply.getRegDate())
@@ -34,6 +35,7 @@ public interface WebUserReplyService {
                 .urno(dto.getUrno())
                 .text(dto.getText())
                 .replyer(dto.getReplyer())
+                .replyerEmail(dto.getReplyerEmail())
                 .webUser(webUser)
                 .build();
 

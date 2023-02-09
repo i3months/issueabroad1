@@ -20,6 +20,7 @@ public interface ScrapReplyService {
                 .srno(scrapReply.getSrno())
                 .text(scrapReply.getText())
                 .replyer(scrapReply.getReplyer())
+                .replyerEmail(scrapReply.getReplyerEmail())
                 .modDate(scrapReply.getModDate())
                 .regDate(scrapReply.getRegDate())
                 .build();
@@ -35,6 +36,7 @@ public interface ScrapReplyService {
                 .srno(dto.getSrno())
                 .text(dto.getText())
                 .replyer(dto.getReplyer())
+                .replyerEmail(dto.getReplyerEmail())
                 .scrap(scrap)
                 .build();
 

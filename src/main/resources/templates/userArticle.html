@@ -68,7 +68,7 @@
                         <div class="card-header">
                             <h4 class="titletext titletext2">[[${dto.title}]]<time>[[${#temporals.format(dto.regDate, 'MM/dd HH:mm')}]]</time></h4>
                             <span>
-                                <button class="btn btn-primary btn-sm korean"
+                                <button th:if="${dto.writerEmail == replyerEmail}" class="btn btn-primary btn-sm korean"
                                         th:onclick="|location.href='@{/user/modify/{uno}(uno = ${dto.uno})}'|">
                                     수정 및 삭제
                                 </button>

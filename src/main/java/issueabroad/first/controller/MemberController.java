@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class MemberController {
 
+
+    @GetMapping("/myarticle")
+    public String myArticle(Model model) {
+
+        return "my/myArticle";
+    }
+
     @GetMapping("/members/new")
     public String createForm(Model model) {
 //        model.addAttribute("memberForm", new MemberForm());

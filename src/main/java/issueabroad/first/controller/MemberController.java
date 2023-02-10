@@ -1,6 +1,12 @@
 package issueabroad.first.controller;
 
+import issueabroad.first.dto.PageRequestDTO;
+import issueabroad.first.repository.MemberRepository;
+import issueabroad.first.repository.WebUserRepository;
+import issueabroad.first.security.dto.AuthMemberDTO;
+import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,11 +17,25 @@ import org.springframework.web.bind.annotation.PostMapping;
 @RequiredArgsConstructor
 public class MemberController {
 
+    private final MemberRepository memberRepository;
+    private final WebUserService webUserService;
 
     @GetMapping("/myarticle")
-    public String myArticle(Model model) {
+    public String myArticle(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, PageRequestDTO pageRequestDTO, Model model) {
+
+        model.addAttribute("result", webUserService.getListMyArticle(authMemberDTO.getEmail(), pageRequestDTO));
+        model.addAttribute("url", "user");
+        model.addAttribute("paging", "myarticle");
 
         return "my/myArticle";
+    }
+
+    @GetMapping("/myprofile")
+    public String myProfile(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
+        model.addAttribute("id", authMemberDTO.getName());
+        model.addAttribute("email", authMemberDTO.getEmail());
+
+        return "my/myProfile";
     }
 
     @GetMapping("/members/new")

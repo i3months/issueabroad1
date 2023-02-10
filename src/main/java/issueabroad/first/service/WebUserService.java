@@ -5,6 +5,8 @@ import issueabroad.first.dto.PageResultDTO;
 import issueabroad.first.dto.WebUserDTO;
 import issueabroad.first.entity.article.WebUser;
 import issueabroad.first.entity.member.Member;
+import issueabroad.first.security.dto.AuthMemberDTO;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface WebUserService {
@@ -16,6 +18,7 @@ public interface WebUserService {
     PageResultDTO<WebUserDTO, Object[]> getListMainSuggest(PageRequestDTO pageRequestDTO);
     PageResultDTO<WebUserDTO, Object[]> getListFree(PageRequestDTO pageRequestDTO);
     PageResultDTO<WebUserDTO, Object[]> getListMainFree(PageRequestDTO pageRequestDTO);
+    PageResultDTO<WebUserDTO, Object[]> getListMyArticle(String email, PageRequestDTO pageRequestDTO);
 
 
     @Transactional

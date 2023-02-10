@@ -27,7 +27,7 @@
     <!-- nav bar -->
     <div class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
         <div class="container">
-            <a href="/static" class="navbar-brand">해외 커뮤니티 사이트 모아보기</a>
+            <a href="/" class="navbar-brand">해외 커뮤니티 사이트 모아보기</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -63,17 +63,14 @@
                         <ul class="list-group">
                             <li class="list-group-item d-flex align-items-center">
                                 <span>아이디 : &nbsp;</span>
-                                <span> loginid_show</span>
+                                <span> [[${id}]]</span>
                             </li>
                             <li class="list-group-item d-flex align-items-center">
                                 <span>이메일 : &nbsp;</span>
-                                <span> qwerasdfzxcv@naver.com</span>
+                                <span> [[${email}]]</span>
                             </li>                            
                         </ul>
                         <ul class="list-group changelist">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                이메일 변경                                
-                            </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 비밀번호 변경
                             </li>                            
@@ -97,7 +94,7 @@
     <div class="container foot">
         <footer class="py-3 my-4">
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item"><a href="/static" class="nav-link px-2 text-muted">Home</a></li>
+                <li class="nav-item"><a href="/" class="nav-link px-2 text-muted">Home</a></li>
                 <li class="nav-item"><a href="https://github.com/months13" class="nav-link px-2 text-muted">Github</a></li>
                 <li class="nav-item"><a href="https://github.com/months13" class="nav-link px-2 text-muted">Email</a></li>
             </ul>

@@ -46,6 +46,15 @@ public interface WebUserRepository extends JpaRepository<WebUser, Long> {
             " where u.uno = :uno")
     Object getWebUserByUno(@Param("uno") Long uno);
 
+    @Query(value = "select u, w, count(ur)" +
+            " from WebUser u " +
+            " left join u.writer w " +
+            " left join WebUserReply ur on ur.webUser = u " +
+            " where u.writer.email = :writerEmail " +
+            " group by u ",
+            countQuery = "select count(u) from WebUser u")
+    Page<Object[]> getWebUserWithReplyCountByEmail(@Param("writerEmail") String writerEmail, Pageable pageable);
+
 
     @Modifying
     @Query("update WebUser u set u.viewCount = u.viewCount + 1 where u.uno = :uno")

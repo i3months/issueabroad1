@@ -10,10 +10,12 @@ import issueabroad.first.entity.article.WebUser;
 import issueabroad.first.entity.member.Member;
 import issueabroad.first.repository.WebUserReplyRepository;
 import issueabroad.first.repository.WebUserRepository;
+import issueabroad.first.security.dto.AuthMemberDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -114,6 +116,18 @@ public class WebUserServiceImpl implements WebUserService {
 
 
         return new PageResultDTO<>(res, fn);
+    }
+
+    @Override
+    public PageResultDTO<WebUserDTO, Object[]> getListMyArticle(String email, PageRequestDTO pageRequestDTO) {
+        Function<Object[], WebUserDTO> fn = (en -> entityToDTO((WebUser)en[0], (Member)en[1], (Long)en[2]));
+
+        Page<Object[]> res = webUserRepository.getWebUserWithReplyCountByEmail(email,
+                pageRequestDTO.getPageable(Sort.by("uno").descending()));
+
+
+        return new PageResultDTO<>(res, fn);
+
     }
 
     @Override

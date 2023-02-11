@@ -239,3 +239,29 @@ time {
 .commentinput {
     margin-left:5px;
 }
+
+.loginline {
+    margin-top:30px;
+    text-align: center;
+}
+
+.login2 {
+    width:80px;
+    font-weight: bold;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+.register2 {
+    width:80px;
+    font-weight: bold;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+.find2 {
+    width:80px;
+    font-weight: bold;
+    margin-left:5px;
+    margin-right:5px;
+}

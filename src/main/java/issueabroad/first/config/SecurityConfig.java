@@ -1,6 +1,8 @@
 package issueabroad.first.config;
 
+import issueabroad.first.security.service.MemberUserDetailsService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,14 +26,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         /**
          * 접근 제한을 설정할 수 있다 ...
+         * 애너테이션 기반으로도 가능한데, 모든 리소스에 접근 제한을 설정하는 경우니까 이게 더 괜찮은 것 같다.
          */
 
         http.authorizeRequests()
                 .antMatchers("/").hasRole("USER");
 
-        http.formLogin();
         http.csrf().disable();
-        http.logout();
+        http.formLogin().loginPage("/members/login").permitAll().and().logout().permitAll();
 
     }
 

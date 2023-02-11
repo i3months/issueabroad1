@@ -38,6 +38,11 @@ public class MemberController {
         return "my/myProfile";
     }
 
+    @GetMapping("/members/login")
+    public String login() {
+        return "members/login";
+    }
+
     @GetMapping("/members/new")
     public String createForm(Model model) {
 //        model.addAttribute("memberForm", new MemberForm());

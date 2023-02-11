@@ -29,11 +29,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
          * 애너테이션 기반으로도 가능한데, 모든 리소스에 접근 제한을 설정하는 경우니까 이게 더 괜찮은 것 같다.
          */
 
+        http.csrf().disable();
+
         http.authorizeRequests()
                 .antMatchers("/").hasRole("USER");
 
-        http.csrf().disable();
-        http.formLogin().loginPage("/members/login").permitAll().and().logout().permitAll();
+        http.formLogin().loginPage("/login").permitAll();
+
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .deleteCookies("JSESSIONID", "remember-me");
+
+
 
     }
 

@@ -38,7 +38,7 @@ public class MemberController {
         return "my/myProfile";
     }
 
-    @GetMapping("/members/login")
+    @GetMapping("/login")
     public String login() {
         return "members/login";
     }
@@ -78,7 +78,7 @@ public class MemberController {
     }
 
     @GetMapping("/members/findId")
-    public String fingId() {
+    public String findId() {
 
         return "members/findId";
     }

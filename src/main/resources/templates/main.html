@@ -97,7 +97,9 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-body loginid">[[${memberName}]]</div>
-                        <button type="button" class="btn btn-primary btn-sm login">로그아웃</button>
+                        <form action="/logout" method="post">
+                            <button type="submit" class="btn btn-primary btn-sm login">로그아웃</button>
+                        </form>
                         <button type="button" class="btn btn-primary btn-sm register" onclick="location.href='myprofile'">내 정보</button>
                         <button type="button" class="btn btn-primary btn-sm find" onclick="location.href='/myarticle'">내가 쓴 글</button>
                     </div>

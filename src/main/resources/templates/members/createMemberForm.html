@@ -53,7 +53,7 @@
 
     <!-- article line -->
 
-    <form action="/members/new" th:object="${memberForm}" method="POST">
+    <div>
         <div class="container">
             <div class="row">
                 <div class="col-lg-2">
@@ -62,30 +62,30 @@
                 <div class="col-lg-8">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="/members/new" th:action method="post" th:object="${member}">
                                 <fieldset>
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
-                                               aria-describedby="emailHelp1" placeholder="이메일을 입력하세요.">
-                                        <small id="emailHelp1" class="form-text text-muted">
-                                            아이디 및 비밀번호를 찾을 때 사용됩니다.
+                                        <label for="email2" class="form-label mt-4">Email address</label>
+                                        <input type="email" class="form-control" id="email2"
+                                               aria-describedby="emailHelp1" placeholder="이메일을 입력하세요." name="email" th:field="*{email}">
+                                        <small class="alert1" th:errors="*{email}">
+                                            이메일 오류
                                         </small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputID1" class="form-label mt-4">ID</label>
-                                        <input type="text" class="form-control" id="exampleInputID1" placeholder="아이디를 입력하세요.">
-                                        <small class="form-text text-muted">
-                                            아이디는 15자 이하의 영문 소문자 및 숫자로 구성됩니다.
+                                        <input type="text" class="form-control" id="exampleInputID1" placeholder="아이디를 입력하세요." name="name" th:field="*{name}">
+                                        <small class="alert1" th:errors="*{name}">
+                                            아이디 오류
                                         </small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="exampleInputPassword1" class="form-label mt-4">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요.">
-                                        <small class="form-text text-muted">
-                                            비밀번호에는 특수문자와 영문자가 포함되어야 합니다.
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="비밀번호를 입력하세요." name="password" th:field="*{password}">
+                                        <small class="alert1" th:errors="*{password}">
+                                            비밀번호 오류
                                         </small>
                                     </div>
                                     <button type="submit" class="btn btn-primary registerbutton">가입하기</button>
@@ -99,7 +99,7 @@
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <!-- article line fin -->
 
 

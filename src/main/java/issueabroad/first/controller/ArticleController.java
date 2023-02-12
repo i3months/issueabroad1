@@ -66,10 +66,6 @@ public class ArticleController {
     public String modifyUser(@PathVariable("uno") Long uno, WebUserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
         webUserService.modify(dto);
 
-        System.out.println("0-------------0");
-        System.out.println(uno);
-        System.out.println("0-------------0");
-
         return "redirect:/";
     }
 

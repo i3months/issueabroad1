@@ -1,24 +1,37 @@
 package issueabroad.first.controller;
 
 import issueabroad.first.dto.PageRequestDTO;
+import issueabroad.first.entity.member.Member;
+import issueabroad.first.entity.member.MemberForm;
+import issueabroad.first.entity.member.MemberRole;
 import issueabroad.first.repository.MemberRepository;
 import issueabroad.first.repository.WebUserRepository;
 import issueabroad.first.security.dto.AuthMemberDTO;
+import issueabroad.first.service.MemberService;
 import issueabroad.first.service.WebUserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
+@Log4j2
 public class MemberController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final WebUserService webUserService;
+
+    private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @GetMapping("/myarticle")
     public String myArticle(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, PageRequestDTO pageRequestDTO, Model model) {
@@ -44,32 +57,48 @@ public class MemberController {
     }
 
     @GetMapping("/members/new")
-    public String createForm(Model model) {
-//        model.addAttribute("memberForm", new MemberForm());
-
+    public String createForm(@ModelAttribute("member") MemberForm member) {
         return "members/createMemberForm";
     }
 
-//    @PostMapping("/members/new")
-//    public String create(MemberForm form, BindingResult result) { // Valid
-//        // @Valid 애너테이션을 사용하면 MemberForm 의 NotEmpty 등에 대해 Validation을 진행 해 준다.
-//
-//        if(result.hasErrors()) { // Valid에 통과하지 못하면 result에 오류가 담긴다.
-//            return "members/createMemberForm";
-//            // MemberForm 에서 NotEmpty 애너테이션 이후 메세지를 추가해주면
-//            // 해당 메세지를 bindingresult가 가져가서 뷰에서 사용할 수 있도록 해 준다.
-//            // html 파일을 적절히 조작해 어느 부분에서 에러가 발생했는지 사용자에게 알려주자. (소스코드 참고)
-//            // Member 엔티티 대신 MemberForm을 쓰는 이유는 이게 더 깔끔해서
-//        }
-//
-//        // form 에 있는 정보들을 꺼내서 적당히 사용해줌.
-//
-//        // 이후 Member 인스턴스를 만든다. (form에 있는 정보를 사용함)
-//        // memberService 의 join을 호출해 멤버를 db에 저장
-//
-//        return "redirect:/"; // 저장 된 후 다시 재로딩을 방지해야 한다. 리다이렉트를 사용함
-//
-//    }
+    @PostMapping("/members/new")
+    public String create(@ModelAttribute("member") MemberForm member, BindingResult bindingResult) {
+
+        if (ObjectUtils.isEmpty(member.getEmail())) {
+            bindingResult.addError(new FieldError("member", "email", "이메일을 입력해주세요."));
+        }
+
+        if (!ObjectUtils.isEmpty(member.getEmail()) && !ObjectUtils.isEmpty(memberService.getMemberByEmail(member.getEmail()))) {
+            bindingResult.addError(new FieldError("member", "email", "이미 존재하는 이메일입니다."));
+        }
+
+        String pattern = "(?=.*[a-z])(?=.*[@#$%^&+=])(?=\\S+$).{8,15}";
+
+        if (ObjectUtils.isEmpty(member.getPassword()) || !(member.getPassword().matches(pattern))) {
+            bindingResult.addError(new FieldError("member", "password", "비밀번호는 특수문자와 영문자가 포함된 8~15 길이의 문자열입니다."));
+        }
+
+        if (member.getName().length() >= 16 || ObjectUtils.isEmpty(member.getName())) {
+            bindingResult.addError(new FieldError("member", "name", "아이디는 15자 이하의 영문 소문자 및 숫자로 구성됩니다."));
+        }
+
+        if (bindingResult.hasErrors()) {
+            log.info("error... {}", bindingResult);
+            return "members/createMemberForm";
+        }
+
+        Member newMember = Member.builder()
+                .email(member.getEmail())
+                .password(passwordEncoder.encode(member.getPassword()))
+                .name(member.getName())
+                .fromSocial(false)
+                .build();
+        newMember.addMemberRole(MemberRole.USER);
+
+        memberRepository.save(newMember);
+
+        return "redirect:/";
+    }
 
     @GetMapping("/members/find")
     public String findHome() { // model 으로

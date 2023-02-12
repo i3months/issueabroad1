@@ -98,7 +98,7 @@
                     <div class="card-body">
                         <div class="card-body loginid">[[${memberName}]]</div>
                         <form action="/logout" method="post">
-                            <button type="button" class="btn btn-primary btn-sm login">로그아웃</button>
+                            <button type=submit class="btn btn-primary btn-sm login">로그아웃</button>
                         </form>
                         <button type="button" class="btn btn-primary btn-sm register" onclick="location.href='/myprofile'">내 정보</button>
                         <button type="button" class="btn btn-primary btn-sm find" onclick="location.href='/myarticle'">내가 쓴 글</button>
@@ -107,11 +107,6 @@
                 <div>
                     <button type="button" class="btn btn-primary post" onclick="location.href='/register'">글쓰기</button>
                 </div>
-                <!-- <form class="card searchp">
-                    <div class="card-body">
-                        <input type="text" class="form-control" placeholder="제목으로 게시글을 검색하세요." id="inputDefault">
-                    </div>
-                </form> -->
             </div>                        
             
         </div>

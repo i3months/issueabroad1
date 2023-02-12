@@ -30,7 +30,10 @@ public class ArticleController {
     private final ScrapReplyService scrapReplyService;
 
     @GetMapping("/register")
-    public String registerArticle() {
+    public String registerArticle(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, Model model) {
+        model.addAttribute("memberEmail", authMemberDTO.getEmail());
+        model.addAttribute("memberName", authMemberDTO.getName());
+
         log.info("register article...");
 
         return "registerArticle";
@@ -53,6 +56,9 @@ public class ArticleController {
         WebUserDTO dto = webUserService.get(uno);
         webUserService.updateViewCount(uno);
 
+        model.addAttribute("memberEmail", authMemberDTO.getEmail());
+        model.addAttribute("memberName", authMemberDTO.getName());
+
         model.addAttribute("replyerEmail", authMemberDTO.getEmail());
         model.addAttribute("dto", dto);
         model.addAttribute("dtoReply", webUserReplyService.getList(uno));
@@ -63,17 +69,21 @@ public class ArticleController {
 
 
     @PostMapping("/user/modify/{uno}")
-    public String modifyUser(@PathVariable("uno") Long uno, WebUserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
+    public String modifyUser(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @PathVariable("uno") Long uno, WebUserDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO) {
+
         webUserService.modify(dto);
 
         return "redirect:/";
     }
 
     @GetMapping("/user/modify/{uno}")
-    public String modifyUser(@PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
+    public String modifyUser(@AuthenticationPrincipal AuthMemberDTO authMemberDTO, @PathVariable("uno") Long uno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model) {
         WebUserDTO dto = webUserService.get(uno);
 
         model.addAttribute("dto", dto);
+
+        model.addAttribute("memberEmail", authMemberDTO.getEmail());
+        model.addAttribute("memberName", authMemberDTO.getName());
 
         return "modifyArticle";
     }
@@ -92,6 +102,9 @@ public class ArticleController {
         ScrapDTO dto = scrapService.get(sno);
         scrapService.updateViewCount(sno);
 
+
+        model.addAttribute("memberEmail", authMemberDTO.getEmail());
+        model.addAttribute("memberName", authMemberDTO.getName());
 
         model.addAttribute("replyerEmail", authMemberDTO.getEmail());
         model.addAttribute("dto", dto);

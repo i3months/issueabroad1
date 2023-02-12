@@ -88,21 +88,21 @@
             </div>
 
             <div class="col-lg-2">
-                <form class="card">
+                <div class="card">
                     <div class="card-body">
-                        <input type="text" class="form-control" placeholder="아이디">
-                        <input type="password" class="form-control" placeholder="비밀번호">
-                                                
-                        <input type="submit" class="btn btn-primary btn-sm login" value="로그인">
-                        <button type="button" class="btn btn-primary btn-sm register" onclick="location.href='members/new'">회원가입</button>
-                        <button type="button" class="btn btn-primary btn-sm find" onclick="location.href='members/find'">찾기</button>
+                        <div class="card-body loginid">[[${memberName}]]</div>
+                        <form action="/logout" method="post">
+                            <button type=submit class="btn btn-primary btn-sm login">로그아웃</button>
+                        </form>
+                        <button type="button" class="btn btn-primary btn-sm register" onclick="location.href='/myprofile'">내 정보</button>
+                        <button type="button" class="btn btn-primary btn-sm find" onclick="location.href='/myarticle'">내가 쓴 글</button>
                     </div>
-                </form>
+                </div>
                 <div>
                     <button type="button" class="btn btn-primary post" onclick="location.href='/register'">글쓰기</button>
                 </div>
-            </div>                        
-            
+            </div>
+
         </div>
 
         <!-- 첫줄 끝 -->

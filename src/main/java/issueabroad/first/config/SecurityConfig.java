@@ -19,9 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * 아래 부분이 있으면 접근 제한 걸림!
-     */
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         /**
@@ -34,8 +31,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/").hasRole("USER");
 
-        http.formLogin().loginPage("/login").permitAll();
+        http.authorizeRequests()
+                        .antMatchers("/members/new").permitAll();
 
+
+        http.formLogin().loginPage("/login").permitAll();
         http.logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")

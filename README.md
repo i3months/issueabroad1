@@ -29,5 +29,8 @@
 |![글1](https://user-images.githubusercontent.com/85468465/218667083-844d45d0-458e-4af9-95da-d7f28db09389.png)|![글2](https://user-images.githubusercontent.com/85468465/218667461-32250cde-bda7-4ece-a957-17d366b6f92f.png)|![게시판](https://user-images.githubusercontent.com/85468465/218667773-c7db650b-8e31-40e3-9261-ce16263bc6ca.png)|![검색](https://user-images.githubusercontent.com/85468465/218667968-c50f14d3-a6d1-40b1-9a77-fb813da530b1.png)|
 |:--:|:--:|:--:|:--:|
 |글1|글2|게시판|검색|
+|![댓글](https://user-images.githubusercontent.com/85468465/218668237-12405ce2-8d7e-41cd-994b-9d74fbcf73f8.png)|![글 작성](https://user-images.githubusercontent.com/85468465/218668612-8940e5f4-e589-4fc7-b1a9-69e970381235.png)|![내가 쓴 글](https://user-images.githubusercontent.com/85468465/218669688-bb212e4f-9d81-430e-b7cf-10b5b8d987c9.png)|![글 수정 및 삭제](https://user-images.githubusercontent.com/85468465/218669834-fe477b7a-4743-4de7-8e80-d8ab86f9ab8b.png)|
+|:--:|:--:|:--:|:--:|
+|댓글|글 작성|내가 쓴 글|글 수정 및 삭제|
 
 

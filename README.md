@@ -26,5 +26,8 @@
 |:--:|:--:|:--:|:--:|
 |로그인|회원가입|메인화면1|메인화면2|
 
+|![글1](https://user-images.githubusercontent.com/85468465/218667083-844d45d0-458e-4af9-95da-d7f28db09389.png)|![글2](https://user-images.githubusercontent.com/85468465/218667461-32250cde-bda7-4ece-a957-17d366b6f92f.png)|![게시판](https://user-images.githubusercontent.com/85468465/218667773-c7db650b-8e31-40e3-9261-ce16263bc6ca.png)|![검색](https://user-images.githubusercontent.com/85468465/218667968-c50f14d3-a6d1-40b1-9a77-fb813da530b1.png)|
+|:--:|:--:|:--:|:--:|
+|글1|글2|게시판|검색|
 
 

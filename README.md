@@ -22,8 +22,9 @@
 
 
 ## 화면 구성
-|![로그인](https://user-images.githubusercontent.com/85468465/218661734-17251cdd-86c5-4eb9-b726-dc63dadd31f3.png)|![회원가입](https://user-images.githubusercontent.com/85468465/218661889-81975410-626c-4238-b722-ffae215e2f95.png)|![메인화면1](https://user-images.githubusercontent.com/85468465/218663767-3b412239-85e3-405e-befe-3179dde4a042.png)|![메인화면2](https://user-images.githubusercontent.com/85468465/218665118-b52df6e4-9fec-4f74-9d20-29fb638ad7b8.png)|
+|![로그인](https://user-images.githubusercontent.com/85468465/218661734-17251cdd-86c5-4eb9-b726-dc63dadd31f3.png)|![회원가입](https://user-images.githubusercontent.com/85468465/218661889-81975410-626c-4238-b722-ffae215e2f95.png)|![메인화면1](https://user-images.githubusercontent.com/85468465/218663767-3b412239-85e3-405e-befe-3179dde4a042.png)|![메인화면2](https://user-images.githubusercontent.com/85468465/218666470-6f86b329-3651-4fa6-a797-d67d6712553e.png)|
 |:--:|:--:|:--:|:--:|
+|로그인|회원가입|메인화면1|메인화면2|
 
 
 

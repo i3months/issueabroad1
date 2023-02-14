@@ -6,15 +6,18 @@
 해외 웹 사이트의 게시글들을 가져오고 한국어로 번역해서 제공하는 웹 애플리케이션 입니다.
 기본적인 커뮤니티 게시판의 기능들 또한 제공합니다.
 <br>
+<br>
 
 
 ### Tech Stack
 `Spring Boot` `Thymeleaf` `JavaScript` `JPA`  `MariaDB` `Spring Security` `etc...`
 <br>
+<br>
 
 
 ### E-R Diagram
 <img width="464" alt="image" src="https://user-images.githubusercontent.com/85468465/218659944-c114b538-6408-47bd-8351-37cba58fee24.png">
+<br>
 <br>
 
 
